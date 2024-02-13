@@ -1,0 +1,69 @@
+{
+    "manifest_version": 3,
+    "name": "INGDLC for Afreeca",
+    "version": "1.2.0",
+    "description": "아프리카TV 도배, 캡쳐, VOD·클립·캐치 저장(Beta)",
+    "icons": {
+      "128": "icons/icon.png"
+    },
+    "background": {
+      "service_worker": "src/serviceWorker.js",
+      "type": "module"
+    },
+    "action": {
+      "default_icon": {
+        "128": "icons/icon.png"
+    },
+      "default_title": "INGDLC for Afreeca",
+      "default_popup": "main.html"
+    },
+    "options_page": "main.html",
+    "web_accessible_resources": [
+      {
+        "resources": [
+          "src/config.mjs",
+          "src/utils.mjs"
+        ],
+        "type": "module",
+        "matches": [
+          "https://cafe.daum.net/*",
+          "https://play.afreecatv.com/*",
+          "https://vod.afreecatv.com/*"
+        ]
+      }
+    ],
+    "permissions": [
+      "storage",
+      "webRequest",
+      "activeTab",
+      "tabs",
+      "downloads"
+    ],
+    "content_scripts": [
+      {
+        "matches": [
+          "https://play.afreecatv.com/*"
+        ],
+        "js": [
+          "src/mujisung.js",
+          "src/controller.js",
+          "src/twitchBtns.js"
+        ]
+      },
+      {
+        "matches": [
+          "https://vod.afreecatv.com/*"
+        ],
+        "js": [
+          "src/vodBtns.js",
+          "src/ffmpegTest.js"
+        ]
+      }
+    ],
+    "content_security_policy": {
+      "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+    },
+    "host_permissions": [
+      "<all_urls>"
+    ]
+  }

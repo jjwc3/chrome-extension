@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>잉친쓰 DLC Rev.beta</title>
+    <script src="./tailwindcss.js"></script>
+    <style>
+        body::-webkit-scrollbar {
+            width: 10px;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: #555;
+            border-radius: 10px;
+            background-clip: padding-box;
+            border:1px solid transparent;
+        }
+        body::-webkit-scrollbar-track {
+            background-color: #999;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body style="min-width:790px;" class="text-slate-900 bg-slate-50 px-2 py-4">
+    <header>
+        <h1 class="text-2xl font-bold text-center">
+            잉친쓰 DLC Rev.beta
+        </h1>
+
+        <div class="text-center text-xs text-slate-500">
+            v<span id="version-current">0.0</span>
+        </div>
+
+        <div class="absolute right-2 top-2">
+            <a href="main.html" target="_blank">새 창에서 열기</a>
+        </div>
+    </header>
+
+    <footer class="flex justify-around my-4">
+        <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://bj.afreecatv.com/nanajam" target="_blank">💜아프리카TV</a>
+        <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://cafe.naver.com/ingsfriends" target="_blank">💕잉친쓰</a>
+        <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://docs.google.com/spreadsheets/d/1FOZdya-n8Rv2GMBOqecv_rOA8swGGLUJE6hA_LYv6wg/edit#gid=0" target="_blank">💚방송일정</a>
+        <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://www.youtube.com/channel/UCW945UjEs6Jm3rVNvPEALdg" target="_blank">❤️유튜브</a>
+        <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://www.instagram.com/friendshiping94/" target="_blank">💗인스타그램</a>
+    </footer>
+
+    <div id="wrap" class="flex justify-between">
+        <div id="left" class="basis-1/2">
+            <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
+                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">아프리카TV 설정</h2>
+
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.controller.enabled"># 캡쳐버튼</label>
+                        <div class="text-slate-400 ml-2 text-xs">아프리카TV 채팅에 캡쳐 버튼 추가</div>
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.controller.enabled">
+                        <option value="2">ON (단축키 Alt+C)</option>
+                        <option value="1">단축키(Alt+C)만 사용</option>
+                        <option value="0">OFF</option>
+                    </select>
+                </div>
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.mujisung.enabled"># 도배버튼</label>
+                        <div class="text-slate-400 ml-2 text-xs">아프리카TV 채팅에 도배 버튼 추가</div>
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.mujisung.enabled">
+                        <option value="2">ON (단축키 Alt+M)</option>
+                        <option value="1">단축키(Alt+M)만 사용</option>
+                        <option value="0">OFF</option>
+                    </select>
+                </div>
+            </div>
+            <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
+                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">경로 설정</h2>
+
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.controller.enabled"># 클립 다운로드</label>
+                        <div class="text-slate-400 ml-2 text-xs">FFmpeg 명령어 경로 설정</div>
+                    </h3>
+                    <div class="flex items-center">
+                        <input class="border rounded-sm p-2 w-11/12 text-sm" type="text" id="pathInput" placeholder="경로 입력">
+                        <button class="rounded-sm border hover:bg-slate-50 py-2 px-0 w-1/12" id="pathSave">저장</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="right" class="basis-1/2">
+
+            <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
+                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">아프리카TV 도배도우미</h2>
+
+                <div class="mb-6">
+                    <input class="border rounded-sm p-2 w-full text-sm mb-1" type="text" id="mujisung-search" placeholder="검색">
+    
+                    <select class="border rounded-sm p-2 w-full text-sm" id="mujisung">
+                        <option value="">도배 리스트</option>
+                    </select>
+                </div>
+
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.mujisung.custom"># 커스텀 도배리스트</label>
+                        <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 입력</div>
+                    </h3>
+                    <textarea class="config border rounded-sm p-2 w-full h-44 text-xs" id="twitch.mujisung.custom"></textarea>
+
+                </div>
+
+                <!-- <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.mujisung.enabled"># 도배버튼</label>
+                        <div class="text-slate-400 ml-2 text-xs">아프리카TV 채팅에 도배 버튼 추가</div>
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.mujisung.enabled">
+                        <option value="2">ON (단축키 Alt+M)</option>
+                        <option value="1">단축키(Alt+M)만 사용</option>
+                        <option value="0">OFF</option>
+                    </select>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-8 text-center text-xs">
+        <a class="mx-4" href="#" id="config-reset">설정 초기화</a>
+        <a class="mx-4" href="#" id="config-save">설정 내보내기</a>
+        <a class="mx-4" href="#" id="config-load">설정 불러오기</a>
+    </footer>
+
+    <script src="./main.js" type="module"></script>
+</body>
+</html>
