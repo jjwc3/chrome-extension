@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "INGDLC for Afreeca",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "아프리카TV 도배, 캡쳐, VOD·클립·캐치 저장(Beta)",
     "icons": {
       "128": "icons/icon.png"
@@ -22,7 +22,8 @@
       {
         "resources": [
           "src/config.mjs",
-          "src/utils.mjs"
+          "src/utils.mjs",
+          "tailwindcss.js"
         ],
         "type": "module",
         "matches": [
@@ -47,7 +48,8 @@
         "js": [
           "src/mujisung.js",
           "src/controller.js",
-          "src/twitchBtns.js"
+          "src/twitchBtns.js",
+          "src/broadCheck.js"
         ]
       },
       {

@@ -11,14 +11,35 @@ import { getConfig, setConfig } from './config.mjs';
             return true;
         }
     }
-    setInterval(() => {
+
+    // const distinguishElement = document.getElementsByClassName("video_edit")[0];
+
+    // if (distinguishElement) {
+    //     clearInterval(buttonClick);
+    //     console.log(distinguishElement);
+    // } else {
+    //     const buttonClick = setInterval(() => {
+    //         const btn = document.getElementById("INGDLC-DL");
+            
+    //         if (btn.onclick) return;
+    
+    //         btn.onclick = download;
+    
+    //     }, 600);
+    // }
+
+
+  
+    const buttonClick = setInterval(() => {
         const btn = document.getElementById("INGDLC-DL");
-        
+        if (document.getElementsByClassName("video_edit")[0]) clearInterval(buttonClick);        
         if (btn.onclick) return;
 
         btn.onclick = download;
 
     }, 600);
+    
+    
 
     let m3u8Url;
     chrome.runtime.onMessage.addListener(
@@ -36,6 +57,7 @@ import { getConfig, setConfig } from './config.mjs';
     // const regex = /[^0-9]/g;
 
     async function download() {
+        // console.log(document.getElementsByClassName("video_edit")[0]);
         const dlAlert = document.getElementById("INGDLC-DL-ALERT");
         console.log(datetime());
         console.log(m3u8Url);

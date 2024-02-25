@@ -1,5 +1,7 @@
 setInterval(() => {
-    if (document.getElementById("INGDLC-DL-LI")) return;
+    if (document.getElementById("INGDLC-DL-ALERT")) return;
+
+    if (document.getElementsByClassName("video_edit")[0]) return;
 
     function createBtn(id, text) {
         let btn = document.createElement("button");
