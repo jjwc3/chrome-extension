@@ -47,7 +47,8 @@
         "js": [
           "src/mujisung.js",
           "src/controller.js",
-          "src/twitchBtns.js"
+          "src/twitchBtns.js",
+          "src/broadCheck.js"
         ]
       },
       {
