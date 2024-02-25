@@ -22,7 +22,8 @@
       {
         "resources": [
           "src/config.mjs",
-          "src/utils.mjs"
+          "src/utils.mjs",
+          "tailwindcss.js"
         ],
         "type": "module",
         "matches": [
