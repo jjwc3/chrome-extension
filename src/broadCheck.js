@@ -2,7 +2,7 @@ var checkIntervalFlag = false;
 
 setTimeout(() => {
     const userId = window.szBjId.value;
-    const notBroading = document.getElementById("notBroadingEmptyBox").style.cssText;
+    const notBroading = document.getElementById("notBroadingList").style.cssText;
     if(!notBroading.includes("display")){
         checkLoop(userId);
     }

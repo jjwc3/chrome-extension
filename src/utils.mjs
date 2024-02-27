@@ -2,17 +2,20 @@ const log = (message) => {
     console.log("[잉친쓰 DLC]" + message);
 }
 
+// 도배 문장 복사
 const copyToClipboard = (val) => {
     if (val.length <= 1) return;
 
     var t = document.createElement("textarea");
     document.body.appendChild(t);
 
+    // 아프리카TV 글자수 제한: 128
     let newVal = "";
+    let tempVal = "";
     while (true){
-        newVal += (val + " ")
-
-        if (newVal.length >= 300) break;
+        tempVal += (val + " ");
+        if (tempVal.length > 129) break;
+        newVal = tempVal;
     }
 
     t.value = newVal;
@@ -21,6 +24,7 @@ const copyToClipboard = (val) => {
     document.body.removeChild(t);
 };
 
+// 다운로드 명령어 복사를 위해 하나만 복사하는 함수
 const copyToClipboardOne = (copyText) => {
     if (copyText.length <= 1) return;
 

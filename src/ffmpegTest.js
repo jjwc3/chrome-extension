@@ -29,7 +29,7 @@ import { getConfig, setConfig } from './config.mjs';
     // }
 
 
-  
+    
     const buttonClick = setInterval(() => {
         const btn = document.getElementById("INGDLC-DL");
         if (document.getElementsByClassName("video_edit")[0]) clearInterval(buttonClick);        
@@ -40,7 +40,7 @@ import { getConfig, setConfig } from './config.mjs';
     }, 600);
     
     
-
+    // m3u8 URL Service Worker 로부터 받아오기
     let m3u8Url;
     chrome.runtime.onMessage.addListener(
         function(request, sender, sendResponse) {
@@ -56,6 +56,7 @@ import { getConfig, setConfig } from './config.mjs';
     // const reader = new FileReader();
     // const regex = /[^0-9]/g;
 
+    // FFmpeg 명령어 복사
     async function download() {
         // console.log(document.getElementsByClassName("video_edit")[0]);
         const dlAlert = document.getElementById("INGDLC-DL-ALERT");

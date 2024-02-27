@@ -1,3 +1,4 @@
+// 기본 설정
 const defaultConfig = {
     twitch: {
         boxer: {

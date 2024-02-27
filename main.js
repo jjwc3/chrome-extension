@@ -6,10 +6,11 @@ Fetch data from server
 ********************/
 document.getElementById("version-current").innerHTML = chrome.runtime.getManifest().version
 
-fetch("https://cafe.daum.net/_c21_/bbs_read?grpid=1YV3j&fldid=pr4o&page=1&prev_page=null&firstbbsdepth=null&lastbbsdepth=null&contentval=00Eqbzzzzzzzzzzzzzzzzzzzzzzzzz&selectyn=Y", {
+fetch("https://jjwc3.github.io/ingdlc-mlist/", {
     mode: 'no-cors'
 }).then(response => response.text()).then(async function (text){
-    let version;
+    // let version;
+    console.log(text);
 
     try{
         text = text.split("\n");
@@ -18,24 +19,25 @@ fetch("https://cafe.daum.net/_c21_/bbs_read?grpid=1YV3j&fldid=pr4o&page=1&prev_p
         for (let i = 0; i < text.length; i++){
             let txt = text[i].trim();
     
-            if (txt == "@NANAJAM_BEGIN") capture = true;
-            else if (txt == "@NANAJAM_END") break;
+            if (txt == "@@@LIST_START") capture = true;
+            else if (txt == "@@@LIST_END") break;
             else if (capture){
                 mujisungList.push(txt);
             }
         }
+        console.log(mujisungList);
 
         await setLargeStorage("mujisungList", mujisungList);
 
-        for (let i = 0; i < text.length; i++){
-            let txt = text[i].trim();
+        // for (let i = 0; i < text.length; i++){
+        //     let txt = text[i].trim();
     
-            if (txt == "@NANAJAM_VERSION") capture = true;
-            else if (txt == "@NANAJAM_VERSION_END") break;
-            else if (capture){
-                version = txt;
-            }
-        }
+        //     if (txt == "@NANAJAM_VERSION") capture = true;
+        //     else if (txt == "@NANAJAM_VERSION_END") break;
+        //     else if (capture){
+        //         version = txt;
+        //     }
+        // }
 
     }catch (e){
         log("잉친쓰 로그인 후 도배툴 업데이트가 진행됩니다.");

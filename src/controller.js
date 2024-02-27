@@ -10,6 +10,7 @@ import { getConfig, setConfig } from './config.mjs';
 
     let video;
     
+    // 캡쳐 버튼 활성화
     setInterval(() => {
         const btn = document.getElementById("INGDLC-BTN-CAPTURE");
         
@@ -30,6 +31,7 @@ import { getConfig, setConfig } from './config.mjs';
         }
     }
 
+    // 캡쳐
     async function capture() {
         const parentQ = document.getElementsByClassName("btn_quality_mode")[0];
         let h = parseInt(parentQ.children[0].innerHTML);
@@ -58,13 +60,34 @@ import { getConfig, setConfig } from './config.mjs';
         await setConfig("twitch.checkLawAlert.enabled", checkLawEnabled);
     }
 
-    const afreecaUp = setInterval(() => {
+    // AfreecaTV 자동 UP
+    let afreecaUp = setInterval(() => {
         if (document.getElementsByClassName('nickname')[0].innerHTML != '우정잉') clearInterval(afreecaUp);
-        const dom = document.getElementsByClassName("up_recommend")[0].firstElementChild;
-        if (dom.className == 'on') clearInterval(afreecaUp);
+        let dom = document.getElementsByClassName("up_recommend")[0].firstElementChild;
         dom.click();
+        if (dom.className == 'on') clearInterval(afreecaUp);
     }, 1000);
 
-
+    // 자정 넘어가면 자동 UP
+    const today = new Date();
+    let hour = today.getHours();
+    let min = today.getMinutes();
+    let sec = today.getSeconds();
+    let time = hour*3600 + min*60 + sec;
+    console.log(time);
+    setTimeout(() => {
+        afreecaUp = setInterval(() => {
+            if (document.getElementsByClassName('nickname')[0].innerHTML != '우정잉') clearInterval(afreecaUp);
+            let dom = document.getElementsByClassName("up_recommend")[0].firstElementChild;
+            dom.click();
+            if (dom.className == 'on') clearInterval(afreecaUp);
+        }, 1000);
+    }, (86400-time)*1000+1000);
+    
+    // 채팅창 광고 제거
+    const chatAd = document.getElementById("chat_ad");
+    setTimeout(() => {
+        chatAd.remove();
+    }, 500);
     
 })();

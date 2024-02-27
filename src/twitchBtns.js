@@ -1,5 +1,7 @@
 setInterval(() => {
     if (document.getElementById("INGDLC-MUJISUNG-LI")) return;
+
+    // 잘라내기, 복사, 붙여넣기 금지 해제
     document.addEventListener("cut", event => event.stopPropagation(), true);
     document.addEventListener("copy", event => event.stopPropagation(), true);
     document.addEventListener("paste", event => event.stopPropagation(), true);
