@@ -1,3 +1,5 @@
+// 실행되지 않음. 기존 DLC에서 가져온거임.
+
 var checkIntervalFlag = false;
 
 setTimeout(() => {
