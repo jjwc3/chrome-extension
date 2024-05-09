@@ -10,6 +10,7 @@ const defaultConfig = {
         mujisung: {
             enabled: 2,
             custom: "⬛⬛⬛도배 리스트\n⬛⬛⬛리스트 추가는 확장 프로그램에서",
+            exception: "규칙\n채팅금지\n가능입니다\n푸숑"
         },
         controller: {
             enabled: 2,
@@ -18,6 +19,9 @@ const defaultConfig = {
             enabled: 1,
         },
         path: "",
+        autoUp: {
+            custom: "nanajam\n"
+        },
     },
     cafe: {
         molcom: {

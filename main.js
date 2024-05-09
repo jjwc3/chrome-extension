@@ -9,8 +9,8 @@ document.getElementById("version-current").innerHTML = chrome.runtime.getManifes
 fetch("https://jjwc3.github.io/ingdlc-mlist/", {
     mode: 'no-cors'
 }).then(response => response.text()).then(async function (text){
-    // let version;
-    console.log(text);
+    let version;
+    // console.log(text);
 
     try{
         text = text.split("\n");
@@ -25,20 +25,22 @@ fetch("https://jjwc3.github.io/ingdlc-mlist/", {
                 mujisungList.push(txt);
             }
         }
-        console.log(mujisungList);
+        // console.log(mujisungList);
 
         await setLargeStorage("mujisungList", mujisungList);
 
-        // for (let i = 0; i < text.length; i++){
-        //     let txt = text[i].trim();
+        for (let i = 0; i < text.length; i++){
+            let txt = text[i].trim();
     
-        //     if (txt == "@NANAJAM_VERSION") capture = true;
-        //     else if (txt == "@NANAJAM_VERSION_END") break;
-        //     else if (capture){
-        //         version = txt;
-        //     }
-        // }
+            if (txt == "@@@VERSION_START") capture = true;
+            else if (txt == "@@@VERSION_END") break;
+            else if (capture){
+                version = txt;
+            }
+        }
 
+        document.getElementById("version-new").innerHTML = version;
+        if (version != document.getElementById("version-current").innerHTML) document.getElementById("notice").style.display = "block";
     }catch (e){
         log("잉친쓰 로그인 후 도배툴 업데이트가 진행됩니다.");
         log(e);
@@ -125,6 +127,10 @@ document.getElementById("mujisung-search").addEventListener("change", updateMuji
 document.getElementById("twitch.mujisung.custom").addEventListener("keyup", (e) => {
     updateMujisungList();
 });
+document.getElementById("twitch.mujisung.exception").addEventListener("keyup", (e) => {
+    updateMujisungList();
+});
+
 
 document.getElementById("mujisung").onchange = function (){
     let v = document.getElementById("mujisung").options[document.getElementById("mujisung").selectedIndex].value;
