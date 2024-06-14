@@ -78,11 +78,11 @@ import { getConfig, setConfig } from './config.mjs';
     let time = hour*3600 + min*60 + sec;
     console.log(time);
     setTimeout(() => {
-        afreecaUp = setInterval(() => {
+        let afreecaUp = setInterval(() => {
             let bj = location.href.split("/")[3];
             if (!upBj.includes(bj)) clearInterval(afreecaUp);
             let dom = document.getElementsByClassName("up_recommend")[0].firstElementChild;
-            dom.click();
+            if (upBj.includes(bj)) dom.click();
             if (dom.className == 'on') clearInterval(afreecaUp);
         }, 1000);
     }, (86400-time)*1000+2000);
