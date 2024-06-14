@@ -66,7 +66,13 @@ import { getConfig, getLargeStorage } from './config.mjs';
         if (!mujisungList) mujisungList = ["크롬에서 잉친쓰 DLC 실행하시면 도배 리스트를 서버에서 불러옵니다."];
     
         const mujisungCustomList = (await getConfig("twitch.mujisung.custom")).split("\n");
-        const exceptionList = (await getConfig("twitch.mujisung.exception")).split("\n");
+        let exceptionList = [];
+        const exceptionTest = (await getConfig("twitch.mujisung.exception")).split("\n");
+        exceptionTest.forEach((e) => {
+            if (e.length >= 1) {
+                exceptionList.push(e.trim());
+            }
+        });
 
         const keyword = document.getElementById('INGDLC-MUJISUNG-INPUT').value;
         const div = document.getElementById("INGDLC-MUJISUNG-LIST");
@@ -126,7 +132,7 @@ import { getConfig, getLargeStorage } from './config.mjs';
 
                 if (chat.length >= 50 && regex.test(chat)) {
                     if (shortLog.includes(short)) continue;
-                    if (exceptionList <= 1) chatPush();
+                    if (exceptionList.length <= 1) chatPush();
                     else {
                         exceptionList.forEach(function(e) {
                             if (!chat.includes(e)) chatPush();

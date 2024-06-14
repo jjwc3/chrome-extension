@@ -63,7 +63,7 @@ import { getConfig, setConfig } from './config.mjs';
 
     // AfreecaTV 자동 UP
     let afreecaUp = setInterval(() => {
-        const bj = location.href.split("/")[3];
+        let bj = location.href.split("/")[3];
         if (!upBj.includes(bj)) clearInterval(afreecaUp);
         let dom = document.getElementsByClassName("up_recommend")[0].firstElementChild;
         dom.click();
@@ -79,6 +79,7 @@ import { getConfig, setConfig } from './config.mjs';
     console.log(time);
     setTimeout(() => {
         afreecaUp = setInterval(() => {
+            let bj = location.href.split("/")[3];
             if (!upBj.includes(bj)) clearInterval(afreecaUp);
             let dom = document.getElementsByClassName("up_recommend")[0].firstElementChild;
             dom.click();
