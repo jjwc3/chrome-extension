@@ -34,6 +34,7 @@ const defaultConfig = {
             enabled: 1,
         },
         alert: {
+            articleId: 1,
             enabled: 3,
             volume: 50,
             image: "icon",
