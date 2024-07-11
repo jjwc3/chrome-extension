@@ -67,7 +67,7 @@
           "https://cafe.naver.com/*"
         ],
         "js": [
-          "src/cafeAlert.js"
+          "src/cafeAlertTest.js"
         ]
       }
     ],

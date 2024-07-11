@@ -40,13 +40,39 @@ const NANAJAM_COMMCACHE = {};
         image: await getConfig("cafe.alert.image"),
     }
 
-    const NANAJAM_LINK_COMM = "https://cafe.daum.net/_c21_/member_cmt_search?grpid=1YV3j&fldid=&enc_userid=Yt6bBuAqTIk0&nickname=우정잉";
-    const NANAJAM_LINK_DOC = "https://cafe.naver.com/ca-fe/cafes/29844827/members/QXl99m0EULgw5jhw03oeLA";
-    // const NANAJAM_LINK_COMM = "https://cafe.daum.net/_c21_/member_cmt_search?grpid=1YV3j&fldid=&enc_userid=FgcxpiZs-LQ0&nickname=우정나라할매국밥";
-    // const NANAJAM_LINK_DOC = "https://cafe.daum.net/_c21_/member_article_cafesearch?grpid=1YV3j&item=writer&nickname=7Jqw7KCV64KY65287ZWg66ek6rWt67Cl&nickname_enc=base64&enc_userid=FgcxpiZs-LQ0";
-
+    const NANAJAM_LINK_COMM = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberProfileCommentList?cafeId=31150943&memberKey=ze8OwS74I5rll5OlBTaoLQ&perPage=15&page=1&requestFrom=A";
+    const NANAJAM_LINK_DOC = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=31150943&search.memberKey=ze8OwS74I5rll5OlBTaoLQ&search.perPage=15&search.page=1&requestFrom=A";
+    // const NANAJAM_LINK_COMM = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberProfileCommentList?cafeId=31150943&memberKey=ze8OwS74I5rll5OlBTaoLQ&perPage=15&page=1&requestFrom=A";
+    // const NANAJAM_LINK_DOC = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=31150943&search.memberKey=ze8OwS74I5rll5OlBTaoLQ&search.perPage=15&search.page=1&requestFrom=A";
+  
     let NANAJAM_DOCID = 0;
     let NANAJAM_COMMID = 0;
+
+    async function fetchArticleId() {
+        try {
+          const notificationOptions = {
+            extension: "INGDLC",
+            title: await getConfig("cafe.alert.title"),
+            body: await getConfig("cafe.alert.body"),
+            image: await getConfig("cafe.alert.image"),
+          }
+          const pArticleId = await getConfig("cafe.alert.articleId");
+          const response = await fetch("https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=31150943&search.memberKey=ze8OwS74I5rll5OlBTaoLQ&search.perPage=15&search.page=1&requestFrom=A");
+          const jsonData = await response.json();
+          const articleId = jsonData.message.result.articleList[0].articleid;
+          if (pArticleId != articleId) {
+            console.log("articleid:", articleId);
+            await setConfig("cafe.alert.articleId", articleId);
+          }
+        } catch(e) {
+          console.log("Available after Login");
+        }
+        setTimeout(() => {
+          fetchArticleId();
+        }, 1000);
+    }
+      
+    fetchArticleId();
 
     function NANAJAM_CHECK_COMM(){
         fetch(NANAJAM_LINK_COMM, {
@@ -88,23 +114,16 @@ const NANAJAM_COMMCACHE = {};
     function NANAJAM_CHECK_DOC(){
         fetch(NANAJAM_LINK_DOC, {
             mode: 'no-cors'
-        }).then(response => response.text()).then(async function (text){
+        }).then(response => response.json()).then(async function (jsonData){
             let v;
     
             try{
-                text = text.split("\n");
-    
-                for (let i = 0; i < text.length; i++){
-                    text[i] = text[i].trim()
-                    // console.log(text[i]);
-                    // let k = text[i].replace(/<td class="num" nowrap="nowrap">([0-9]+)<\/td>/, '$1');
-                    if (k != text[i]){
-                        v = parseInt(k);
-                        break;
-                    }
-                }
+                let articleId = jsonData.message.result.articleList[0].articleid;
+                
+
+
             }catch (e){
-                log("로그인 후 방장 알림이 작동됩니다.");
+                log("로그인 후 알림이 작동됩니다.");
                 return;
             }
     

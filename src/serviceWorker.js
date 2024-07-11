@@ -13,35 +13,45 @@ chrome.webRequest.onBeforeRequest.addListener(
   );
 
 
-async function fetchArticleId() {
+
+const docLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=31150943&search.memberKey=ze8OwS74I5rll5OlBTaoLQ&search.perPage=15&search.page=1&requestFrom=A";
+const commLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberProfileCommentList?cafeId=31150943&memberKey=ze8OwS74I5rll5OlBTaoLQ&perPage=15&page=1&requestFrom=A";
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.extension !== "INGDLC_ALERT") return;
+  console.log('responded');
+  fetchArticleId(request);
+});
+
+const notifications = {};
+async function fetchArticleId(r) {
   try {
     const pArticleId = await getConfig("cafe.alert.articleId");
-    const response = await fetch("https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=31150943&search.memberKey=ze8OwS74I5rll5OlBTaoLQ&search.perPage=15&search.page=1&requestFrom=A");
+    const response = await fetch(docLink);
     const jsonData = await response.json();
     const articleId = jsonData.message.result.articleList[0].articleid;
-    console.log("첫 번째 articleid:", articleId);
-    if (pArticleId != articleId) {
-      await setConfig("cafe.alert.articleId", articleId);
-      const id = 'NANAJAM777_NOTI_' + Math.random();
+    // console.log(articleId);
+    if (pArticleId == articleId) return;
 
-      chrome.notifications.create(id, {
-          type: 'basic',
-          iconUrl: `../icons/${request.image}.png`,
-          title: request.title,
-          message: request.body,
-          priority: 2
-      }, function (id){
-          notifications[id] = request.url
-      })
+    await setConfig("cafe.alert.articleId", articleId);
+    const id = 'NANAJAM777_NOTI_' + Math.random();
+    chrome.notifications.create(id, {
+      type: 'basic',
+      iconUrl: `../icons/${r.image}.png`,
+      title: r.title,
+      message: r.body,
+      priority: 2
+    }, function (id){
+        notifications[id] = `https://cafe.naver.com/ingtesttest/${articleId}`
+    })
+    chrome.runtime.sendMessage();
+    } catch(e) {
+      console.log("Available after Login");
     }
-    
-
-  } catch(e) {
-    console.log("잉친쓰 로그인 후 이용 가능");
-  }
-  setTimeout(() => {
-    fetchArticleId();
-  }, 1000);
 }
 
-fetchArticleId();
+chrome.notifications.onClicked.addListener(function (id) {
+  chrome.tabs.create({
+    url: notifications[id]
+  });
+})
