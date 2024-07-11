@@ -44,7 +44,7 @@ async function fetchArticleId(r) {
     }, function (id){
         notifications[id] = `https://cafe.naver.com/ingtesttest/${articleId}`
     })
-    chrome.runtime.sendMessage();
+    // chrome.runtime.sendMessage();
     } catch(e) {
       console.log("Available after Login");
     }
