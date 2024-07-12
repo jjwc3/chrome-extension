@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>INGDLC for Afreeca</title>
+    <title>INGDLC</title>
     <script src="./tailwindcss.js"></script>
     <style>
         body::-webkit-scrollbar {
@@ -23,7 +23,8 @@
 <body style="min-width:790px;" class="text-slate-900 bg-slate-50 px-2 py-4">
     <header>
         <h1 class="text-2xl font-bold text-center">
-            INGDLC for Afreeca
+            <!-- INGDLC -->
+             TITLE
         </h1>
 
         <div class="text-center text-xs text-slate-500">
@@ -39,17 +40,74 @@
         </div>
     </header>
 
-    <footer class="flex justify-around my-4">
+    <!-- <footer class="flex justify-around my-4">
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://bj.afreecatv.com/nanajam" target="_blank">💜아프리카TV</a>
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://cafe.naver.com/ingsfriends" target="_blank">💕잉친쓰</a>
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://docs.google.com/spreadsheets/d/1FOZdya-n8Rv2GMBOqecv_rOA8swGGLUJE6hA_LYv6wg/edit#gid=0" target="_blank">💚방송일정</a>
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://www.youtube.com/channel/UCW945UjEs6Jm3rVNvPEALdg" target="_blank">❤️유튜브</a>
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://www.instagram.com/friendshiping94/" target="_blank">💗인스타그램</a>
-    </footer>
+    </footer> -->
 
     <div id="wrap" class="flex justify-between">
         <div id="left" class="basis-1/2">
             <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
+                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">잉친쓰 방장알림</h2>
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="cafe.alert.enabled"># 알림 활성화</label>
+                        <div class="text-slate-400 ml-2 text-xs">잉친쓰 활동 중에만 동작</div>
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="cafe.alert.enabled">
+                        <option value="3">모두 켜기</option>
+                        <option value="2">브라우저 알림만(비권장)</option>
+                        <option value="1">운영체제 알림만(방해금지모드 꺼야 함)</option>
+                        <option value="0">모두 끄기</option>
+                    </select>
+                </div>
+
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="cafe.alert.volume"># 브라우저 알림 볼륨</label>
+                        <div class="text-slate-400 ml-2 text-xs"></div>
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="cafe.alert.volume">
+                        <option value="100">100%</option>
+                        <option value="75">75%</option>
+                        <option value="50">50%</option>
+                        <option value="25">25%</option>
+                        <option value="0">0%</option>
+                    </select>
+                </div>
+
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="cafe.alert.image"># 알림 이미지</label>
+                        <div class="text-slate-400 ml-2 text-xs"></div>
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="cafe.alert.image">
+                        <option value="&quot;icon&quot;">기본 이미지</option>
+                        <option value="&quot;kakaotalk&quot;">카카오톡</option>
+                        <option value="&quot;chrome&quot;">크롬</option>
+                        <option value="&quot;naver&quot;">네이버</option>
+                        <option value="&quot;facebook&quot;">페이스북</option>
+                    </select>
+                </div>
+
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="cafe.alert.title"># 알림 제목</label>
+                        <div class="text-slate-400 ml-2 text-xs">운영체제 알림에만 적용</div>
+                    </h3>
+                    <input class="config border rounded-sm p-2 w-full text-sm" type="text" id="cafe.alert.title">
+                </div>
+
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="cafe.alert.body"># 알림 내용</label>
+                        <div class="text-slate-400 ml-2 text-xs"></div>
+                    </h3>
+                    <input class="config border rounded-sm p-2 w-full text-sm" type="text" id="cafe.alert.body">
+                </div>
                 <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">아프리카TV 설정</h2>
 
                 <div class="mb-4 last:mb-0">

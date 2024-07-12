@@ -35,11 +35,12 @@ const defaultConfig = {
         },
         alert: {
             articleId: 1,
+            commId: 1,
             enabled: 3,
             volume: 50,
             image: "icon",
-            title: "잉친쓰 DLC",
-            body: "빠밤..! 우정잉 등장..!",
+            title: "DLC",
+            body: "알림",
             latest: 0,
         },
     }
