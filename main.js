@@ -6,38 +6,42 @@ Fetch data from server
 ********************/
 document.getElementById("version-current").innerHTML = chrome.runtime.getManifest().version
 
-fetch("https://jjwc3.github.io/ingdlc-mlist/", {
+fetch("https://jjwc3.github.io/ingdlc-new-mlist/list.json", {
     mode: 'no-cors'
-}).then(response => response.text()).then(async function (text){
+}).then(response => response.json()).then(async function (json){
     let version;
     // console.log(text);
 
     try{
-        text = text.split("\n");
-        let capture = false;
+        // text = text.split("\n");
+        // let capture = false;
 
-        for (let i = 0; i < text.length; i++){
-            let txt = text[i].trim();
+        // for (let i = 0; i < text.length; i++){
+        //     let txt = text[i].trim();
     
-            if (txt == "@@@LIST_START") capture = true;
-            else if (txt == "@@@LIST_END") break;
-            else if (capture){
-                mujisungList.push(txt);
-            }
-        }
+        //     if (txt == "@@@LIST_START") capture = true;
+        //     else if (txt == "@@@LIST_END") break;
+        //     else if (capture){
+        //         mujisungList.push(txt);
+        //     }
+        // }
+        // console.log(mujisungList);
+        // let mujisungList = JSON.parse(json);
+        mujisungList = json;
         // console.log(mujisungList);
 
         await setLargeStorage("mujisungList", mujisungList);
 
-        for (let i = 0; i < text.length; i++){
-            let txt = text[i].trim();
+        // for (let i = 0; i < text.length; i++){
+        //     let txt = text[i].trim();
     
-            if (txt == "@@@VERSION_START") capture = true;
-            else if (txt == "@@@VERSION_END") break;
-            else if (capture){
-                version = txt;
-            }
-        }
+        //     if (txt == "@@@VERSION_START") capture = true;
+        //     else if (txt == "@@@VERSION_END") break;
+        //     else if (capture){
+        //         version = txt;
+        //     }
+        // }
+        let version = mujisungList.version;
 
         document.getElementById("version-new").innerHTML = version;
         if (version != document.getElementById("version-current").innerHTML) document.getElementById("notice").style.display = "block";
@@ -121,7 +125,7 @@ document.getElementById("config-load").addEventListener("click", async () => {
 /********************
 Mujisung
 ********************/
-let mujisungList = [];
+let mujisungList;
 
 document.getElementById("mujisung-search").addEventListener("change", updateMujisungList);
 document.getElementById("twitch.mujisung.custom").addEventListener("keyup", (e) => {
@@ -137,7 +141,7 @@ document.getElementById("mujisung").onchange = function (){
 
     if (v.indexOf("⬛⬛⬛") === 0) return;
 
-    copyToClipboard(v);
+    copyToClipboard(v.split(',')[1]);
 
     document.getElementById("mujisung").selectedIndex = 0;
     document.getElementById('mujisung-search').value = '';
@@ -168,13 +172,39 @@ function updateMujisungList(){
         new Option('', '', false)
     );
 
-    mujisungList.forEach(option => {
-        if (option.includes(keyword) || option.length < 2 || option.includes('⬛⬛⬛')) {
-            document.getElementById('mujisung').options.add(
-                new Option(maxLen(option), option, false)
-            )
+    // mujisungList.forEach(option => {
+    //     if (option.includes(keyword) || option.length < 2 || option.includes('⬛⬛⬛')) {
+    //         document.getElementById('mujisung').options.add(
+    //             new Option(maxLen(option), option, false)
+    //         )
+    //     }
+    // });
+    // let mujisungValues = Object.values(mujisungList);
+    // console.log(mujisungValues);
+    // for (let i of mujisungValues) {
+    //     if (typeof i == "string") continue;
+    //     let pair = Object.entries(i);
+
+    // }
+    let mujisungPair = Object.entries(mujisungList);
+    for (let i = 0; i < mujisungPair.length; i++) {
+        // console.log(mujisungPair[i]);
+        let mujisungLargeKey = mujisungPair[i][0];
+        if (typeof mujisungPair[i][1] == "string") continue;
+        let mujisungPairSecond = Object.entries(mujisungPair[i][1]);
+        // console.log(mujisungPairSecond);
+        for (let j = 0; j < mujisungPairSecond.length; j++) {
+            console.log(mujisungPairSecond[j])
+            let tempArray = [];
+            mujisungPairSecond[j][1].forEach(t => {
+                if (mujisungPairSecond[j][0].includes(keyword) || t.includes(keyword) || t.length < 2 || t.includes('⬛⬛⬛')) {
+                    document.getElementById('mujisung').options.add(
+                        new Option(`${mujisungPairSecond[j][0]}, ${t}`, t, false)
+                    )
+                }
+            })
         }
-    });
+    }
 }
 
 /********************
