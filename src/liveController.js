@@ -17,7 +17,7 @@ import { getConfig, setConfig } from './config.mjs';
         
         if (btn.onclick) return;
 
-        if (enabled == 2) btn.style.display = "block";
+        if (enabled === 2) btn.style.display = "block";
 
         btn.onclick = capture;
 
@@ -67,7 +67,7 @@ import { getConfig, setConfig } from './config.mjs';
         if (!upBj.includes(bj)) clearInterval(afreecaUp);
         let dom = document.getElementsByClassName("up_recommend")[0].firstElementChild;
         dom.click();
-        if (dom.className == 'on') clearInterval(afreecaUp);
+        if (dom.className === 'on') clearInterval(afreecaUp);
     }, 1000);
 
     // 자정 넘어가면 자동 UP
@@ -83,7 +83,7 @@ import { getConfig, setConfig } from './config.mjs';
             if (!upBj.includes(bj)) clearInterval(afreecaUp);
             let dom = document.getElementsByClassName("up_recommend")[0].firstElementChild;
             if (upBj.includes(bj)) dom.click();
-            if (dom.className == 'on') clearInterval(afreecaUp);
+            if (dom.className === 'on') clearInterval(afreecaUp);
         }, 1000);
     }, (86400-time)*1000+2000);
     

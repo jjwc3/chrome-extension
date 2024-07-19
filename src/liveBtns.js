@@ -58,8 +58,8 @@ setInterval(() => {
     document.body.onkeydown = (e) => {
         if (!e.altKey) return;
 
-        if (e.keyCode == 77) document.getElementById("INGDLC-BTN-MUJISUNG").click();
-        if (e.keyCode == 67) document.getElementById("INGDLC-BTN-CAPTURE").click();
+        if (e.keyCode === 77) document.getElementById("INGDLC-BTN-MUJISUNG").click();
+        if (e.keyCode === 67) document.getElementById("INGDLC-BTN-CAPTURE").click();
     }
 
     document.getElementsByClassName("game_point")[0]?.after(li2);

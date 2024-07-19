@@ -14,7 +14,7 @@ import { getConfig, getLargeStorage } from './config.mjs';
     
         if (btn.onclick) return;
 
-        if (enabled == 2) btn.style.display = "block";
+        if (enabled === 2) btn.style.display = "block";
 
         btn.onclick = mujisung;
 
@@ -53,7 +53,7 @@ import { getConfig, getLargeStorage } from './config.mjs';
 
         const div = document.getElementById("INGDLC-MUJISUNG-LIST");
 
-        if (e.keyCode == 13 && div.children.length) {
+        if (e.keyCode === 13 && div.children.length) {
             document.getElementById("INGDLC-MUJISUNG-LIST").children[0].click();
         }
     }
@@ -61,7 +61,7 @@ import { getConfig, getLargeStorage } from './config.mjs';
     const updateList = async () => {
         if (!document.getElementById("INGDLC-MUJISUNG-INPUT")) return;
 
-        let mujisungList = await getLargeStorage("mujisungList");;
+        let mujisungList = await getLargeStorage("mujisungList");
 
         if (!mujisungList) mujisungList = ["크롬에서 잉친쓰 DLC 실행하시면 도배 리스트를 서버에서 불러옵니다."];
     
@@ -180,7 +180,7 @@ import { getConfig, getLargeStorage } from './config.mjs';
         const el = document.getElementById("INGDLC-MUJISUNG");
         const chat_area = document.getElementById("chat_area");
 
-        if (el.style.display == "none") {
+        if (el.style.display === "none") {
             document.getElementById("INGDLC-MUJISUNG-INPUT").value = "";
             el.style.display = "flex";
             chat_area.style.top = "226px";

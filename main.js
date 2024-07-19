@@ -44,7 +44,7 @@ fetch("https://jjwc3.github.io/ingdlc-new-mlist/list.json", {
         let version = mujisungList.version;
 
         document.getElementById("version-new").innerHTML = version;
-        if (version != document.getElementById("version-current").innerHTML) document.getElementById("notice").style.display = "block";
+        if (version !== document.getElementById("version-current").innerHTML) document.getElementById("notice").style.display = "block";
     }catch (e){
         log("잉친쓰 로그인 후 도배툴 업데이트가 진행됩니다.");
         log(e);
@@ -76,11 +76,11 @@ const saveFn = async (e) => {
         const configElement = configElements[i];
         const data = await getConfig(configElement.id);
     
-        if (configElement.tagName == "SELECT") {
+        if (configElement.tagName === "SELECT") {
             for (let j = 0; j < configElement.options.length; j++){  
                 const optionElement = configElement.options[j];
 
-                if(JSON.parse(optionElement.value) == data){
+                if(JSON.parse(optionElement.value) === data){
                     optionElement.selected = true;
                 }
             }
@@ -212,10 +212,10 @@ Save Path
 ********************/
 document.getElementById("pathSave").addEventListener("click", async () => {
     let firstPath = document.getElementById("pathInput").value;
-    if (firstPath.includes('\\') && firstPath[firstPath.length-1] != '\\') {
+    if (firstPath.includes('\\') && firstPath[firstPath.length-1] !== '\\') {
         firstPath = firstPath+'\\';
     }
-    if (firstPath.includes('/') && firstPath[firstPath.length-1] != '/') {
+    if (firstPath.includes('/') && firstPath[firstPath.length-1] !== '/') {
         firstPath += '/';
     }
 

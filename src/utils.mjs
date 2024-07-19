@@ -6,7 +6,7 @@ const log = (message) => {
 const copyToClipboard = (val) => {
     if (val.length <= 1) return;
 
-    var t = document.createElement("textarea");
+    let t = document.createElement("textarea");
     document.body.appendChild(t);
 
     // 아프리카TV 글자수 제한: 128
@@ -28,7 +28,7 @@ const copyToClipboard = (val) => {
 const copyToClipboardOne = (copyText) => {
     if (copyText.length <= 1) return;
 
-    var t = document.createElement("textarea");
+    let t = document.createElement("textarea");
     document.body.appendChild(t);
 
     t.value = copyText;

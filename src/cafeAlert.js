@@ -15,7 +15,7 @@ import { getConfig } from './config.mjs';
         if (!enabled) return;
 
         try {
-          chrome.runtime.sendMessage(notificationOptions);
+          await chrome.runtime.sendMessage(notificationOptions);
         } catch(e) {
           console.log(e);
         }
@@ -24,9 +24,9 @@ import { getConfig } from './config.mjs';
         }, 3000);
     }
       
-    sendNoti();
+    await sendNoti();
 
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    chrome.runtime.onMessage.addListener((request) => {
       if (request.extension !== "INGDLC_REALERT") return;
       console.log(volume);
       playAlert(volume/100);

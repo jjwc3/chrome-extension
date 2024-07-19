@@ -15,7 +15,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 const docLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=29844827&search.memberKey=QXl99m0EULgw5jhw03oeLA&search.perPage=15&search.page=1&requestFrom=A";
 // const commLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkReplyListV1?search.clubid=29844827&search.memberKey=QXl99m0EULgw5jhw03oeLA&search.perPage=15&search.page=1&requestFrom=A";
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request) => {
   if (request.extension !== "INGDLC_ALERT") return;
   console.log('responded');
   fetchArticleId(request);
@@ -35,7 +35,7 @@ async function fetchArticleId(r) {
     const url = `https://cafe.naver.com/ingtesttest/${articleId}`
     await setConfig("cafe.alert.articleId", articleId);
     const id = 'NANAJAM777_NOTI_' + Math.random();
-    if (enabled == 1 || enabled == 3) {
+    if (enabled === 1 || enabled === 3) {
       chrome.notifications.create(id, {
         type: 'basic',
         iconUrl: `../icons/${r.image}.png`,
@@ -46,7 +46,7 @@ async function fetchArticleId(r) {
           notifications[id] = url
       })
     }
-    if (enabled == 2 || enabled == 3) {
+    if (enabled === 2 || enabled === 3) {
       chrome.tabs.query({ active: true, currentWindow: true }, (pages) => {
         chrome.tabs.sendMessage(pages[0].id, {
           extension: "INGDLC_REALERT",

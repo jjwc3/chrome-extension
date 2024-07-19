@@ -10,12 +10,11 @@ import { getConfig, setConfig } from './config.mjs';
 
     setInterval(function () {
         try{
-            let frm = document.getElementById("cafe-body");
-        
+            document.getElementById("cafe-body");
             if (!document.getElementById('nanajam_style')){
-                if (enabled == 1) inject(frm);
-                else inject2(frm);
-3   
+                if (enabled === 1) inject();
+                else inject2();
+
                 log("Mode Applied")
             }
         }catch(e){
@@ -24,14 +23,14 @@ import { getConfig, setConfig } from './config.mjs';
     }, 100);
 })();
 
-document.addEventListener('DOMNodeInserted', function(event) {
-    var element = document.getElementById('post_1');
+document.addEventListener('DOMNodeInserted', function() {
+    let element = document.getElementById('post_1');
     if (element) {
         element.style.display = 'none';
     }
 });
 
-const inject = (frm) => {
+const inject = () => {
     document.title = "Cafe"
 
     let css = '#front-img, #post_1{ display:none !important; } img:not(.thumb_img, .btn_write), .figure-video{ opacity:0.05; } img:hover, .figure-video:hover{ opacity:1; } .profile_thumb:after{ content:none !important; }';
@@ -47,7 +46,7 @@ const inject = (frm) => {
     document.head.appendChild(style);
 }
 
-const inject2 = (frm) => {
+const inject2 = () => {
     let css = '#group-area{ display:none; flex-direction:column-reverse; } #TITLEMENUGROUP{ display:none; } .type2_1 #content{ margin-left:0; } .bbs_read_tit .tit_info{ font-size:40px; } .bbs_contents *{ font-size:28px !important; } .comment_section .comment_info .desc_info{ font-size:20px !important; } .txt_item{ font-size:18px !important; } .tbl_board_g td{ padding: 15px 0 !important; } .flexibled2_1 #wrap, .flexibled3_1 #wrap, .flexibled3_3 #wrap{ min-width:0; } body{ overflow-x:hidden; } .recent_list .tbl_board_g .td_board, .fav_list .tbl_board_g .td_board{ width:auto; } [class*=flexibled] .tbl_board_g .td_writer{ width:auto; } .tbl_board_g .td_date{ width:50px; } @media (max-width: 1200px) { .tbl_board_g .td_recommend{ display:none; } .tbl_board_g .td_look{ display:none; } .tbl_board_g .td_board{ display:none; } }';
     let style = document.createElement('style');
 

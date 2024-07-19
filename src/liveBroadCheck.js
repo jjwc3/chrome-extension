@@ -1,4 +1,4 @@
-var checkIntervalFlag = false;
+let checkIntervalFlag = false;
 
 setTimeout(() => {
     const userId = window.szBjId.value;
@@ -12,9 +12,9 @@ setTimeout(() => {
             // 스타일 속성의 변경을 확인
             if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
                 // 스타일 속성이 변경된 요소
-                var targetElement = mutation.target;
+                let targetElement = mutation.target;
                 // 변경된 스타일 속성 가져오기
-                var newStyle = targetElement.style.cssText;
+                let newStyle = targetElement.style.cssText;
                 // 방종을 하면 layerAirOff 요소에 "display: block" 이 추가됩니다.
                 if (newStyle.includes('display: block')) {
                     checkLoop(userId);
@@ -40,7 +40,7 @@ function checkLoop(userId) {
         xhr.send();
     },3000);
 
-    xhr.onreadystatechange = (e)=>{
+    xhr.onreadystatechange = ()=>{
         if(xhr.response === null || xhr.response.broad === null) {
             return
         }

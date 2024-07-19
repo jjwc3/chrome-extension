@@ -64,7 +64,7 @@ const getConfig = async (key) => {
     let defaultPointer = defaultConfig;
 
     subKeys.forEach(subKey => {
-        if (pointer == null || pointer[subKey] == undefined) pointer = defaultPointer[subKey];
+        if (pointer == null || pointer[subKey] === undefined) pointer = defaultPointer[subKey];
         else pointer = pointer[subKey];
 
         defaultPointer = defaultPointer[subKey];
@@ -83,7 +83,7 @@ const setConfig = async (key, value) => {
     for (let i = 0; i < subKeys.length - 1; i++){
         const subKey = subKeys[i];
 
-        if (pointer[subKey] == undefined) pointer[subKey] = {};
+        if (pointer[subKey] === undefined) pointer[subKey] = {};
 
         pointer = pointer[subKey];
     }
