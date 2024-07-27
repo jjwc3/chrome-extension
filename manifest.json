@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "INGDLC for Afreeca",
-  "version": "1.3.3",
-  "description": "아프리카TV 도배, 캡쳐, VOD·클립·캐치 저장(Beta), 자동UP, 방송 시작 시 새로고침, 채팅창 광고 제거, 자동 도배 가져오기",
+  "version": "1.4.0",
+  "description": "아프리카TV 도배, 캡쳐, VOD·클립·캐치 저장, 자동UP, 방송 시작 시 새로고침, 채팅창 광고 제거, 자동 도배 가져오기",
   "icons": {
     "128": "icons/icon.png"
   },
@@ -23,7 +23,8 @@
       "resources": [
         "src/config.mjs",
         "src/utils.mjs",
-        "tailwindcss.js"
+        "tailwindcss.js",
+        "icons/*"
       ],
       "type": "module",
       "matches": [
@@ -68,8 +69,7 @@
       ],
       "js": [
         "src/cafeAlert.js",
-        "src/cafeLiveAlert.js",
-        "src/cafeDisappear.js"
+        "src/cafeLiveAlert.js"
       ]
     }
   ],

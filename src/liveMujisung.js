@@ -62,8 +62,9 @@ import { getConfig, getLargeStorage } from './config.mjs';
         if (!document.getElementById("INGDLC-MUJISUNG-INPUT")) return;
 
         let mujisungList = await getLargeStorage("mujisungList");
+        // console.log(mujisungList);
 
-        if (!mujisungList) mujisungList = ["크롬에서 잉친쓰 DLC 실행하시면 도배 리스트를 서버에서 불러옵니다."];
+        if (!mujisungList) mujisungList = ["INGDLC 팝업창을 실행하면 도배 리스트를 서버에서 불러옵니다."];
     
         const mujisungCustomList = (await getConfig("twitch.mujisung.custom")).split("\n");
         let exceptionList = [];
@@ -95,7 +96,7 @@ import { getConfig, getLargeStorage } from './config.mjs';
 
                 if (v.indexOf("⬛⬛⬛") === 0) return;
 
-                copyToClipboard(v);
+                copyToClipboard(v.substring(v.indexOf(', ')+2));
 
                 mujisung();
             }
@@ -168,12 +169,17 @@ import { getConfig, getLargeStorage } from './config.mjs';
                 }
             });
         }
-    
-        mujisungList.forEach(v => {
-            if (v.includes(keyword)) {
-                createBox(v);
-            }
-        });
+
+        Object.entries(mujisungList).forEach((i) => {
+            if (i[0] === 'version') return;
+            if (i[0].includes(keyword)) createBox(`⬛⬛⬛${i[0]}`);
+            Object.entries(i[1]).forEach((j) => {
+                j[1].forEach((k) => {
+                    if (j[0].toUpperCase().includes(keyword.toUpperCase()) || k.toUpperCase().includes(keyword.toUpperCase())) createBox(`${j[0]}, ${k}`);
+                })
+            })
+
+        })
     }
 
     const mujisung = async () => {

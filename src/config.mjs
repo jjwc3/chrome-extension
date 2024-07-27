@@ -39,8 +39,8 @@ const defaultConfig = {
             enabled: 3,
             volume: 50,
             image: "icon",
-            title: "DLC",
-            body: "알림",
+            title: "INGDLC",
+            body: "방장 알림",
             latest: 0,
         },
     }

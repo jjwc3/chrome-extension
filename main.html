@@ -23,8 +23,7 @@
 <body style="min-width:790px;" class="text-slate-900 bg-slate-50 px-2 py-4">
     <header>
         <h1 class="text-2xl font-bold text-center">
-            <!-- INGDLC -->
-             TITLE
+             INGDLC for Afreeca
         </h1>
 
         <div class="text-center text-xs text-slate-500">
@@ -40,13 +39,13 @@
         </div>
     </header>
 
-    <!-- <footer class="flex justify-around my-4">
+    <footer class="flex justify-around my-4">
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://bj.afreecatv.com/nanajam" target="_blank">💜아프리카TV</a>
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://cafe.naver.com/ingsfriends" target="_blank">💕잉친쓰</a>
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://docs.google.com/spreadsheets/d/1FOZdya-n8Rv2GMBOqecv_rOA8swGGLUJE6hA_LYv6wg/edit#gid=0" target="_blank">💚방송일정</a>
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://www.youtube.com/channel/UCW945UjEs6Jm3rVNvPEALdg" target="_blank">❤️유튜브</a>
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://www.instagram.com/friendshiping94/" target="_blank">💗인스타그램</a>
-    </footer> -->
+    </footer>
 
     <div id="wrap" class="flex justify-between">
         <div id="left" class="basis-1/2">
@@ -90,6 +89,7 @@
                         <option value="&quot;chrome&quot;">크롬</option>
                         <option value="&quot;naver&quot;">네이버</option>
                         <option value="&quot;facebook&quot;">페이스북</option>
+                        <option value="&quot;instagram&quot;">인스타그램</option>
                     </select>
                 </div>
 
@@ -108,6 +108,8 @@
                     </h3>
                     <input class="config border rounded-sm p-2 w-full text-sm" type="text" id="cafe.alert.body">
                 </div>
+            </div>
+            <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
                 <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">아프리카TV 설정</h2>
 
                 <div class="mb-4 last:mb-0">
@@ -141,20 +143,7 @@
                     
                 </div>
             </div>
-            <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
-                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">경로 설정</h2>
 
-                <div class="mb-4 last:mb-0">
-                    <h3 class="flex items-center mb-1">
-                        <label class="text-sm font-semibold" for="twitch.controller.enabled"># 클립 다운로드</label>
-                        <div class="text-slate-400 ml-2 text-xs">FFmpeg 명령어 경로 설정</div>
-                    </h3>
-                    <div class="flex items-center">
-                        <input class="border rounded-sm p-2 w-11/12 text-sm" type="text" id="pathInput" placeholder="경로 입력">
-                        <button class="rounded-sm border hover:bg-slate-50 py-2 px-0 w-1/12" id="pathSave">저장</button>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div id="right" class="basis-1/2">
@@ -186,6 +175,7 @@
                     </div>
                 </div>
 
+
                 
 
                 <!-- <div class="mb-4 last:mb-0">
@@ -199,6 +189,21 @@
                         <option value="0">OFF</option>
                     </select>
                 </div> -->
+            </div>
+            <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
+                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">경로 설정</h2>
+
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.controller.enabled"># 클립 다운로드</label>
+                        <div class="text-slate-400 ml-2 text-xs">FFmpeg 명령어 경로 설정</div>
+                        <div id='pathSaveComplete' class="text-slate-400 ml-2 text-xs text-blue-400 font-bold hidden">저장 완료</div>
+                    </h3>
+                    <div class="flex items-center">
+                        <input class="border rounded-sm p-2 w-11/12 text-sm" type="text" id="pathInput" placeholder="경로 입력">
+                        <button class="rounded-sm border hover:bg-slate-50 py-2 px-0 w-1/12" id="pathSave">저장</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

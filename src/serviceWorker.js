@@ -32,7 +32,7 @@ async function fetchArticleId(r) {
     const articleId = articleJson.message.result.articleList[0].articleid;
     if (pArticleId >= articleId) return;
 
-    const url = `https://cafe.naver.com/ingtesttest/${articleId}`
+    const url = `https://cafe.naver.com/ingsfriends/${articleId}`
     await setConfig("cafe.alert.articleId", articleId);
     const id = 'NANAJAM777_NOTI_' + Math.random();
     if (enabled === 1 || enabled === 3) {

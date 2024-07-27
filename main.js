@@ -140,8 +140,7 @@ document.getElementById("mujisung").onchange = function (){
     let v = document.getElementById("mujisung").options[document.getElementById("mujisung").selectedIndex].value;
 
     if (v.indexOf("⬛⬛⬛") === 0) return;
-
-    copyToClipboard(v.split(',')[1]);
+    copyToClipboard(v);
 
     document.getElementById("mujisung").selectedIndex = 0;
     document.getElementById('mujisung-search').value = '';
@@ -188,13 +187,10 @@ function updateMujisungList(){
     // }
     let mujisungPair = Object.entries(mujisungList);
     for (let i = 0; i < mujisungPair.length; i++) {
-        // console.log(mujisungPair[i]);
         let mujisungLargeKey = mujisungPair[i][0];
         if (typeof mujisungPair[i][1] == "string") continue;
         let mujisungPairSecond = Object.entries(mujisungPair[i][1]);
-        // console.log(mujisungPairSecond);
         for (let j = 0; j < mujisungPairSecond.length; j++) {
-            console.log(mujisungPairSecond[j])
             let tempArray = [];
             mujisungPairSecond[j][1].forEach(t => {
                 if (mujisungPairSecond[j][0].includes(keyword) || t.includes(keyword) || t.length < 2 || t.includes('⬛⬛⬛')) {
@@ -211,6 +207,7 @@ function updateMujisungList(){
 Save Path
 ********************/
 document.getElementById("pathSave").addEventListener("click", async () => {
+    document.getElementById("pathSaveComplete").style.display = 'block';
     let firstPath = document.getElementById("pathInput").value;
     if (firstPath.includes('\\') && firstPath[firstPath.length-1] !== '\\') {
         firstPath = firstPath+'\\';
@@ -221,4 +218,7 @@ document.getElementById("pathSave").addEventListener("click", async () => {
 
     await setConfig("twitch.path",firstPath);
     console.log(await getConfig("twitch.path"));
+    setTimeout(() => {
+        document.getElementById("pathSaveComplete").style.display = 'none';
+    }, 2000)
 })
