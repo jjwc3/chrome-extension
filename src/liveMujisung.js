@@ -169,8 +169,11 @@ import { getConfig, getLargeStorage } from './config.mjs';
                 }
             });
         }
-
         Object.entries(mujisungList).forEach((i) => {
+            if (i[0] === '0') {
+                createBox(i[1]);
+                return;
+            }
             if (i[0] === 'version') return;
             if (i[0].includes(keyword)) createBox(`⬛⬛⬛${i[0]}`);
             Object.entries(i[1]).forEach((j) => {
