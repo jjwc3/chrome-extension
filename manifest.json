@@ -29,8 +29,8 @@
       "type": "module",
       "matches": [
         "https://cafe.naver.com/*",
-        "https://play.afreecatv.com/*",
-        "https://vod.afreecatv.com/*"
+        "https://play.sooplive.co.kr/*",
+        "https://vod.sooplive.co.kr/*"
       ]
     }
   ],
@@ -45,7 +45,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://play.afreecatv.com/*"
+        "https://play.sooplive.co.kr/*"
       ],
       "js": [
         "src/liveMujisung.js",
@@ -56,7 +56,7 @@
     },
     {
       "matches": [
-        "https://vod.afreecatv.com/*"
+        "https://vod.sooplive.co.kr/*"
       ],
       "js": [
         "src/vodBtns.js",
