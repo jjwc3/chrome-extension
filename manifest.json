@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "INGDLC for Afreeca",
-  "version": "1.4.1",
-  "description": "아프리카TV 도배, 캡쳐, VOD·클립·캐치 저장, 자동UP, 방송 시작 시 새로고침, 채팅창 광고 제거, 자동 도배 가져오기",
+  "name": "INGDLC for SOOP",
+  "version": "2.0.0",
+  "description": "SOOP 도배, 캡쳐, 클립 저장, 자동UP, 방송 시작 시 새로고침(Beta 작동X), 채팅창 광고 제거, 자동 도배 가져오기",
   "icons": {
     "128": "icons/icon.png"
   },
@@ -14,7 +14,7 @@
     "default_icon": {
       "128": "icons/icon.png"
     },
-    "default_title": "INGDLC for Afreeca",
+    "default_title": "INGDLC for SOOP",
     "default_popup": "main.html"
   },
   "options_page": "main.html",

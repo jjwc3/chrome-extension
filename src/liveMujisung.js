@@ -1,3 +1,6 @@
+// TODO : 다른 확장프로그램과의 호환성(잉친쓰 댓글 참조)
+
+
 import { copyToClipboard } from './utils.mjs';
 import { getConfig, getLargeStorage } from './config.mjs';
 

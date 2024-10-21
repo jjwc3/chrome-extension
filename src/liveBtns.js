@@ -6,12 +6,17 @@ setInterval(() => {
     document.addEventListener("copy", event => event.stopPropagation(), true);
     document.addEventListener("paste", event => event.stopPropagation(), true);
 
-    function createBtn(id, text) {
+    function createBtn(id, image) {
         let btn = document.createElement("button");
         btn.id = id;
-        btn.innerHTML = `[${text}]`;
-        btn.style.color = "#707173";
+        // btn.innerHTML = `[${text}]`;
+        // btn.style.color = "#707173";
         btn.style.display = 'none';
+        let img = document.createElement("img");
+        img.id = `${id}-IMG`;
+        img.src = chrome.runtime.getURL(`../icons/${image}.png`);
+        img.style.width = "32px";
+        btn.appendChild(img);
         return btn;
     }
     const chatbox = document.getElementById("chatbox")
@@ -30,7 +35,7 @@ setInterval(() => {
         div.style.position = "relative";
         div.style.zIndex = "99";
         div.style.top = "auto";
-        div.style.bottom = chatbox.style.height; 
+        div.style.bottom = chatbox.style.height;
         
 
         return div;
@@ -39,11 +44,11 @@ setInterval(() => {
     const createLi = (id) => {
         const li = document.createElement("li");
         li.id = id;
-        li.style.position = "relative";
-        li.style.float = "left";
-        li.style.color = "#000";
-        li.style.zIndex = "99";
-        li.style.marginLeft = "13px";
+        // li.style.position = "relative";
+        // li.style.float = "left";
+        // li.style.color = "#000";
+        // li.style.zIndex = "99";
+        // li.style.marginLeft = "13px";
 
         return li;
     }
@@ -51,8 +56,8 @@ setInterval(() => {
     const li1 = createLi("INGDLC-MUJISUNG-LI");
     const li2 = createLi("INGDLC-CAPTURE-LI");
 
-    li1.prepend(createBtn("INGDLC-BTN-MUJISUNG", "도배"));
-    li2.prepend(createBtn("INGDLC-BTN-CAPTURE", "캡쳐"));
+    li1.prepend(createBtn("INGDLC-BTN-MUJISUNG", "mujisung"));
+    li2.prepend(createBtn("INGDLC-BTN-CAPTURE", "capture"));
 
 
     document.body.onkeydown = (e) => {
