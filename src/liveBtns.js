@@ -21,7 +21,7 @@ setInterval(() => {
     }
     const chatbox = document.getElementById("chatbox")
 
-    const createDiv = (id) => {
+    const createModal = (id) => {
         const div = document.createElement("div");
 
         div.id = id;
@@ -71,5 +71,5 @@ setInterval(() => {
     document.getElementsByClassName("game_point")[0]?.after(li1);
 
 
-    document.getElementById("chat_area")?.before(createDiv("INGDLC-MUJISUNG"));
+    document.getElementById("chat_area")?.before(createModal("INGDLC-MUJISUNG"));
 }, 500);

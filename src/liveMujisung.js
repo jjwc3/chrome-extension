@@ -190,12 +190,12 @@ import { getConfig, getLargeStorage } from './config.mjs';
 
     const mujisung = async () => {
         const el = document.getElementById("INGDLC-MUJISUNG");
-        const chat_area = document.getElementById("chat_area");
+        // const chat_area = document.getElementById("chat_area");
 
         if (el.style.display === "none") {
             document.getElementById("INGDLC-MUJISUNG-INPUT").value = "";
             el.style.display = "flex";
-            chat_area.style.top = "226px";
+            // chat_area.style.top = "226px";
 
             await updateList();
             setTimeout(() => {
@@ -203,7 +203,7 @@ import { getConfig, getLargeStorage } from './config.mjs';
             }, 300)
         } else {
             el.style.display = "none";
-            chat_area.style.top = "40px";
+            // chat_area.style.top = "40px";
 
             document.getElementsByClassName("write_area")[0].focus();
         }
