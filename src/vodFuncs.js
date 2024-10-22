@@ -90,7 +90,7 @@ import { getConfig, setConfig } from './config.mjs';
             if (request.url) {
                 m3u8Url = request.url;
                 setTimeout(() => {
-                    document.getElementById("INGDLC-DL").style.color = '#7398ff';
+                    document.getElementById("INGDLC-DL-IMG").style.filter = "opacity(0.5) drop-shadow(0 0 0 #7398ff) saturate(500%)";
                 }, 300);
             }
         }
@@ -127,7 +127,7 @@ import { getConfig, setConfig } from './config.mjs';
         let ffmpegCommand = `ffmpeg -i "${m3u8Url}" -c copy "${path}${datetime()}.mp4"`
         if (!checkLaw()) return;
         copyToClipboardOne(ffmpegCommand);
-        document.getElementById("INGDLC-DL").style.color = "#707173";
+        document.getElementById("INGDLC-DL-IMG").style.filter = "";
         
         dlAlert.style.display = "block";
         setTimeout(function(){dlAlert.style.display = "none"},3000);
