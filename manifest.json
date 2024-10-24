@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "INGDLC for SOOP",
-  "version": "2.0.0",
-  "description": "SOOP 도배, 캡쳐, 클립 저장, 자동UP, 방송 시작 시 새로고침(Beta 작동X), 채팅창 광고 제거, 자동 도배 가져오기",
+  "version": "2.0.1",
+  "description": "SOOP 도배, 캡쳐, 클립 저장, 자동UP, 방송 시작 시 새로고침, 채팅창 광고 제거, 자동 도배 가져오기",
   "icons": {
     "128": "icons/icon.png"
   },
@@ -74,7 +74,7 @@
     }
   ],
   "content_security_policy": {
-    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+    "extension_pages": "script-src 'self'; object-src 'self';"
   },
   "host_permissions": [
     "<all_urls>"

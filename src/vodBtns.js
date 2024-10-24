@@ -37,7 +37,7 @@ captureImg.style.width = "24px";
 setInterval(() => {
     if (document.getElementById("INGDLC-DL-ALERT")) return;
 
-    if (!document.getElementsByClassName("video_edit")[0].className.includes("off")) return;
+    if (!document.getElementsByClassName("video_edit")[0]?.className.includes("off")) return;
 
     
 

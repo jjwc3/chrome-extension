@@ -76,7 +76,7 @@ import { getConfig, setConfig } from './config.mjs';
     const buttonClick = setInterval(() => {
         const btn = document.getElementById("INGDLC-DL");
         if (document.getElementsByClassName("video_edit")[0]) clearInterval(buttonClick);        
-        if (btn.onclick) return;
+        if (btn?.onclick) return;
 
         btn.onclick = download;
 
