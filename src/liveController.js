@@ -83,7 +83,7 @@ import { getConfig, setConfig } from './config.mjs';
             if (!upBj.includes(bj)) clearInterval(afreecaUp);
             let dom = document.getElementById("like");
             if (upBj.includes(bj)) dom.click();
-            if (dom.className === 'on') clearInterval(afreecaUp);
+            if (dom.className.includes('on')) clearInterval(afreecaUp);
         }, 1000);
     }, (86400-time)*1000+2000);
     
