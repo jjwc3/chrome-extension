@@ -74,11 +74,16 @@ import { getConfig, setConfig } from './config.mjs';
 
     //다운 버튼
     const buttonClick = setInterval(() => {
-        const btn = document.getElementById("INGDLC-DL");
-        if (document.getElementsByClassName("video_edit")[0]) clearInterval(buttonClick);        
-        if (btn?.onclick) return;
+        try {
+            const btn = document.getElementById("INGDLC-DL");
+            if (document.getElementsByClassName("video_edit")[0]) clearInterval(buttonClick);
+            if (btn?.onclick) return;
 
-        btn.onclick = download;
+            btn.onclick = download;
+        } catch(e){
+            console.log("Waiting for Video Play.");
+        }
+
 
     }, 600);
     
@@ -86,7 +91,7 @@ import { getConfig, setConfig } from './config.mjs';
     // m3u8 URL Service Worker 로부터 받아오기
     let m3u8Url;
     chrome.runtime.onMessage.addListener(
-        function(request, sender, sendResponse) {
+        function(request) {
             if (request.url) {
                 m3u8Url = request.url;
                 setTimeout(() => {
