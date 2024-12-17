@@ -61,14 +61,21 @@ import { getConfig, setConfig } from './config.mjs';
         await setConfig("twitch.checkLawAlert.enabled", checkLawEnabled);
     }
 
-    // 자동
+    // 자동 UP
     let afreecaUp = setInterval(() => {
+        if (document.getElementsByClassName("btn-login")[0]) clearInterval(afreecaUp);
+        if(!document.getElementsByTagName("body")[0].className.includes("mode")) return;
         let bj = location.href.split("/")[3];
         if (!upBj.includes(bj)) clearInterval(afreecaUp);
         let dom = document.getElementById("like");
-        dom.click();
-        if (dom.className.includes('on')) clearInterval(afreecaUp);
-    }, 1000);
+        if (dom.className.includes('on')) {
+            clearInterval(afreecaUp);
+        } else {
+            setTimeout(()=>{
+                dom.click();
+            },2000);
+        }
+    }, 5000);
 
     // 자정 넘어가면 자동 UP
     const today = new Date();
@@ -79,11 +86,17 @@ import { getConfig, setConfig } from './config.mjs';
     console.log(time);
     setTimeout(() => {
         let afreecaUp = setInterval(() => {
+            if (document.getElementsByClassName("btn-login")[0]) clearInterval(afreecaUp);
             let bj = location.href.split("/")[3];
             if (!upBj.includes(bj)) clearInterval(afreecaUp);
             let dom = document.getElementById("like");
-            if (upBj.includes(bj)) dom.click();
-            if (dom.className.includes('on')) clearInterval(afreecaUp);
+            if (dom.className.includes('on')) {
+                clearInterval(afreecaUp);
+            } else {
+                setTimeout(()=>{
+                    dom.click();
+                },2000);
+            }
         }, 1000);
     }, (86400-time)*1000+2000);
     
