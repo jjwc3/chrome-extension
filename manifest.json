@@ -38,9 +38,7 @@
     "notifications",
     "storage",
     "webRequest",
-    "activeTab",
-    "tabs",
-    "downloads"
+    "tabs"
   ],
   "content_scripts": [
     {
@@ -77,6 +75,11 @@
     "extension_pages": "script-src 'self'; object-src 'self';"
   },
   "host_permissions": [
-    "<all_urls>"
+    "http://*.sooplive.co.kr/*",
+    "https://*.sooplive.co.kr/*",
+    "http://cafe.naver.com/ingsfriends",
+    "https://cafe.naver.com/ingsfriends",
+    "http://cafe.naver.com/ingsfriends/*",
+    "https://cafe.naver.com/ingsfriends/*"
   ]
 }
