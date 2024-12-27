@@ -128,7 +128,9 @@ setInterval(() => {
         downloadli.appendChild(downloadbtn);
         downloadli.prepend(txt);
 
-        document.getElementsByClassName("subscribe")[0].before(downloadli);
+        if (document.getElementsByClassName("video_edit")[0]?.className.includes("off")) {
+            document.getElementsByClassName("subscribe")[0].before(downloadli);
+        }
         document.getElementsByClassName("subscribe")[0].before(captureli);
     }
 

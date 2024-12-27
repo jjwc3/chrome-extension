@@ -3,17 +3,20 @@ import { getConfig, setConfig } from './config.mjs';
 
 (async () => {
     let checkLawEnabled = await getConfig("twitch.checkLawAlert.enabled");
+    let video;
 
     // 캡쳐 버튼 활성화
     setInterval(() => {
         const btn = document.getElementById("INGDLC-BTN-CAPTURE");
 
+        if (!btn) return;
         if (btn.onclick) return;
 
         btn.style.color = '#7398ff';
 
         btn.onclick = capture;
 
+        video = document.getElementsByTagName("video")[0];
     }, 600);
 
     const checkLaw = () => {
@@ -75,8 +78,11 @@ import { getConfig, setConfig } from './config.mjs';
     //다운 버튼
     const buttonClick = setInterval(() => {
         try {
+            if (document.getElementsByClassName("video_edit")[0] && !document.getElementsByClassName("video_edit")[0]?.className.includes("off")) return;
+            console.log(11);
             const btn = document.getElementById("INGDLC-BTN-DL");
-            if (document.getElementsByClassName("video_edit")[0]) clearInterval(buttonClick);
+            // if (document.getElementsByClassName("video_edit")[0]) clearInterval(buttonClick);
+            clearInterval(buttonClick);
             if (btn?.onclick) return;
 
             btn.onclick = download;
@@ -94,6 +100,7 @@ import { getConfig, setConfig } from './config.mjs';
         function(request) {
             if (request.url) {
                 m3u8Url = request.url;
+                if (document.getElementsByClassName("video_edit")[0] && !document.getElementsByClassName("video_edit")[0]?.className.includes("off")) return;
                 setTimeout(() => {
                     document.getElementById("INGDLC-DL-IMG").style.filter = "opacity(0.5) drop-shadow(0 0 0 #7398ff) saturate(500%)";
                 }, 300);
