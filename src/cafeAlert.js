@@ -1,5 +1,5 @@
 import {playAlert} from './utils.mjs';
-import { getConfig } from './config.mjs';
+import {getConfig} from './config.mjs';
 
 (async () => {
     const enabled = await getConfig("cafe.alert.enabled");
@@ -10,7 +10,22 @@ import { getConfig } from './config.mjs';
       image: await getConfig("cafe.alert.image"),
     }
     const volume = await getConfig("cafe.alert.volume");
-     
+
+    async function firstSetArticldId() {
+        if (!enabled) return;
+
+        try {
+            await chrome.runtime.sendMessage({
+                extension: "INGDLC_FIRSTALERT",
+            });
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
+    await firstSetArticldId();
+
+
     async function sendNoti() {
         if (!enabled) return;
 

@@ -26,7 +26,7 @@ import { getConfig, setConfig } from './config.mjs';
 
     const checkLaw = () => {
         if (checkLawEnabled) {
-            return confirm("설정한 화질대로 캡쳐됩니다. 최대화질로 설정 후 캡쳐해주세요.\n\nBJ·저작권자의 동의 없이 녹화된 영상 및 캡쳐 이미지를 공유하는 경우, 그 책임은 전적으로 사용자에게 있습니다.\n\n이를 이해하고 동의하십니까?\n\n이 창은 최초 동의 후 나타나지 않습니다.");
+            return confirm("설정한 화질대로 캡쳐됩니다. 최대화질로 설정 후 캡쳐해주세요.\n\n스트리머·저작권자의 동의 없이 녹화된 영상 및 캡쳐 이미지를 공유하는 경우, 그 책임은 전적으로 사용자에게 있습니다.\n\n이를 이해하고 동의하십니까?\n\n이 창은 최초 동의 후 나타나지 않습니다.");
         } else {
             return true;
         }
@@ -52,7 +52,7 @@ import { getConfig, setConfig } from './config.mjs';
 
         if (!checkLaw()) return;
 
-        a.download = `[잉친쓰 DLC] 캡쳐 ${datetime()}.png`
+        a.download = `[INGDLC] Capture ${datetime()}.png`
         a.click()
         a.remove()
         window.URL.revokeObjectURL(url);
