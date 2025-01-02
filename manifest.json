@@ -69,7 +69,8 @@
       "js": [
         "src/cafeAlert.js",
         "src/cafeLiveAlert.js",
-        "src/cafeReload.js"
+        "src/cafeReload.js",
+        "src/cafeReadArticle.js"
       ]
     }
   ],
@@ -77,13 +78,9 @@
     "extension_pages": "script-src 'self'; object-src 'self';"
   },
   "host_permissions": [
-    "http://*.sooplive.co.kr/*",
-    "https://*.sooplive.co.kr/*",
-    "http://cafe.naver.com/ingsfriends",
-    "https://cafe.naver.com/ingsfriends",
-    "http://cafe.naver.com/ingsfriends/*",
-    "https://cafe.naver.com/ingsfriends/*",
-    "https://apis.naver.com/*",
-    "https://*.github.io/*"
+    "*://*.sooplive.co.kr/*",
+    "*://cafe.naver.com/*",
+    "*://apis.naver.com/*",
+    "*://*.github.io/*"
   ]
 }
