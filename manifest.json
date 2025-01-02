@@ -67,9 +67,17 @@
       ],
       "all_frames": true,
       "js": [
+        "src/cafeReload.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://cafe.naver.com/*"
+      ],
+      "all_frames": false,
+      "js": [
         "src/cafeAlert.js",
         "src/cafeLiveAlert.js",
-        "src/cafeReload.js",
         "src/cafeReadArticle.js"
       ]
     }
