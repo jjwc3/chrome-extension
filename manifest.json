@@ -65,9 +65,11 @@
       "matches": [
         "https://cafe.naver.com/*"
       ],
+      "all_frames": true,
       "js": [
         "src/cafeAlert.js",
-        "src/cafeLiveAlert.js"
+        "src/cafeLiveAlert.js",
+        "src/cafeReload.js"
       ]
     }
   ],
