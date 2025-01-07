@@ -1,9 +1,10 @@
 // 네이버 카페 새로고침 by getCurrentThread
-// Modified: jQuery to VanillaJS
+// Modified: jQuery to VanillaJS, disable on member page
 
 (() => {
     // If it is set to a detailed match on the manifest, it sometimes fails, so the exception is handled like this...
     if (window.name !== 'cafe_main') return;
+    if (window.location.href.includes("/members/")) return;
 
     try {
         let _done = false;
