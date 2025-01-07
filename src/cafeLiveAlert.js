@@ -6,8 +6,7 @@ import { getConfig } from './config.mjs';
 
     if (!enabled) return;
     
-    const NANAJAM_LINK = "https://bjapi.afreecatv.com/api/nanajam/station";
-
+    const NANAJAM_LINK = "https://chapi.sooplive.co.kr/api/nanajam/station";
     let onair;
 
     setTimeout(() => {

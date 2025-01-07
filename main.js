@@ -41,7 +41,8 @@ fetch("https://jjwc3.github.io/ingdlc-new-mlist/list.json", {
         //         version = txt;
         //     }
         // }
-        let version = mujisungList.version;
+        version = mujisungList.version;
+
 
         document.getElementById("version-new").innerHTML = version;
         if (version !== document.getElementById("version-current").innerHTML) document.getElementById("notice").style.display = "block";
@@ -128,10 +129,10 @@ Mujisung
 let mujisungList;
 
 document.getElementById("mujisung-search").addEventListener("change", updateMujisungList);
-document.getElementById("twitch.mujisung.custom").addEventListener("keyup", (e) => {
+document.getElementById("twitch.mujisung.custom").addEventListener("keyup", () => {
     updateMujisungList();
 });
-document.getElementById("twitch.mujisung.exception").addEventListener("keyup", (e) => {
+document.getElementById("twitch.mujisung.exception").addEventListener("keyup", () => {
     updateMujisungList();
 });
 
