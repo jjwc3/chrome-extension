@@ -43,6 +43,10 @@ const defaultConfig = {
             body: "방장 알림",
             latest: 0,
         },
+        read: {
+            enabled: 1,
+            read: {}
+        }
     }
 }
 

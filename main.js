@@ -41,7 +41,8 @@ fetch("https://jjwc3.github.io/ingdlc-new-mlist/list.json", {
         //         version = txt;
         //     }
         // }
-        let version = mujisungList.version;
+        version = mujisungList.version;
+
 
         document.getElementById("version-new").innerHTML = version;
         if (version !== document.getElementById("version-current").innerHTML) document.getElementById("notice").style.display = "block";
@@ -93,11 +94,11 @@ const saveFn = async (e) => {
     }
 })();
 
-document.getElementById("config-reset").addEventListener("click", () => {
+document.getElementById("config-reset").addEventListener("click", async () => {
     if (confirm("모든 설정을 초기화하시겠습니까?")) {
         alert("초기화되었습니다.")
 
-        chrome.storage.sync.set({ config: null });
+        await chrome.storage.local.set({ config: null });
         location.reload();
     }
 });
@@ -128,10 +129,10 @@ Mujisung
 let mujisungList;
 
 document.getElementById("mujisung-search").addEventListener("change", updateMujisungList);
-document.getElementById("twitch.mujisung.custom").addEventListener("keyup", (e) => {
+document.getElementById("twitch.mujisung.custom").addEventListener("keyup", () => {
     updateMujisungList();
 });
-document.getElementById("twitch.mujisung.exception").addEventListener("keyup", (e) => {
+document.getElementById("twitch.mujisung.exception").addEventListener("keyup", () => {
     updateMujisungList();
 });
 
@@ -187,11 +188,11 @@ function updateMujisungList(){
     // }
     let mujisungPair = Object.entries(mujisungList);
     for (let i = 0; i < mujisungPair.length; i++) {
-        let mujisungLargeKey = mujisungPair[i][0];
+        // let mujisungLargeKey = mujisungPair[i][0];
         if (typeof mujisungPair[i][1] == "string") continue;
         let mujisungPairSecond = Object.entries(mujisungPair[i][1]);
         for (let j = 0; j < mujisungPairSecond.length; j++) {
-            let tempArray = [];
+            // let tempArray = [];
             mujisungPairSecond[j][1].forEach(t => {
                 if (mujisungPairSecond[j][0].includes(keyword) || t.includes(keyword) || t.length < 2 || t.includes('⬛⬛⬛')) {
                     document.getElementById('mujisung').options.add(

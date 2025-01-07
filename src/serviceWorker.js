@@ -5,26 +5,26 @@ chrome.webRequest.onBeforeRequest.addListener(
       if (details.url.endsWith('playlist.m3u8')) {
         if (details.url.includes('hls')) {
           chrome.tabs.sendMessage(details.tabId, {url: details.url});
-          console.log(details.url);
+          // console.log(details.url);
         }
       }
     },
     {urls: ['<all_urls>']}
   );
 
-const docLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=29844827&search.memberKey=QXl99m0EULgw5jhw03oeLA&search.perPage=15&search.page=1&requestFrom=A";
-// const docLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=31150943&search.memberKey=ze8OwS74I5rll5OlBTaoLQ&search.perPage=15&search.page=1&requestFrom=A";
+// const docLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=29844827&search.memberKey=QXl99m0EULgw5jhw03oeLA&search.perPage=15&search.page=1&requestFrom=A";
+const docLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=31150943&search.memberKey=ze8OwS74I5rll5OlBTaoLQ&search.perPage=15&search.page=1&requestFrom=A";
 // const commLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkReplyListV1?search.clubid=29844827&search.memberKey=QXl99m0EULgw5jhw03oeLA&search.perPage=15&search.page=1&requestFrom=A";
 // Service Worker에서 fetch API 사용할 경우 manifest.json host_permissions에 도메인 추가해야 함... 이것때문에 개뻘짓했네
-chrome.runtime.onMessage.addListener((request) => {
+chrome.runtime.onMessage.addListener(async (request) => {
   // if (request.extension !== "INGDLC_ALERT" && request.extension !== "INGDLC_FIRSTALERT") return;
 
   if (request.extension === "INGDLC_ALERT") {
-    console.log('after responded');
-    fetchArticleId(request);
+    // console.log('after responded');
+    await fetchArticleId(request);
   } else if (request.extension === "INGDLC_FIRSTALERT") {
-    console.log('first responded')
-    fetchFirstArticleId();
+    // console.log('first responded')
+    await fetchFirstArticleId();
   }
 });
 
@@ -36,7 +36,7 @@ async function fetchArticleId(r) {
     const articleResponse = await fetch(docLink);
     const articleJson = await articleResponse.json();
     const articleId = articleJson.message.result.articleList[0].articleid;
-    console.log(articleId);
+    // console.log(articleId);
     if (pArticleId >= articleId) return;
 
     const url = `https://cafe.naver.com/ingsfriends/${articleId}`
@@ -62,19 +62,22 @@ async function fetchArticleId(r) {
       });
     }
   } catch(e) {
-    // console.log("Available after Login");
-    console.error(e);
+    console.error(`Available after Login : ${e}`)
   }
 }
 
 async function fetchFirstArticleId() {
-  const articleResponse = await fetch(docLink, {
-    mode: "no-cors"
-  });
-  const articleJson = await articleResponse.json();
-  const articleId = articleJson.message.result.articleList[0].articleid;
-  console.log("first = "+articleId);
-  await setConfig("cafe.alert.articleId", articleId);
+  try {
+    const articleResponse = await fetch(docLink, {
+      mode: "no-cors"
+    });
+    const articleJson = await articleResponse.json();
+    const articleId = articleJson.message.result.articleList[0].articleid;
+    // console.log("first = " + articleId);
+    await setConfig("cafe.alert.articleId", articleId);
+  } catch (e) {
+    console.error(`Available after Login : ${e}`);
+  }
 }
 
 
