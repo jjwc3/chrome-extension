@@ -9,8 +9,6 @@ setInterval(() => {
     function createBtn(id, image) {
         let btn = document.createElement("button");
         btn.id = id;
-        // btn.innerHTML = `[${text}]`;
-        // btn.style.color = "#707173";
         btn.style.display = 'none';
         let img = document.createElement("img");
         img.id = `${id}-IMG`;
@@ -21,6 +19,7 @@ setInterval(() => {
     }
     const chatbox = document.getElementById("chatbox")
 
+    // 도배창
     const createModal = (id) => {
         const div = document.createElement("div");
 
@@ -44,12 +43,6 @@ setInterval(() => {
     const createLi = (id) => {
         const li = document.createElement("li");
         li.id = id;
-        // li.style.position = "relative";
-        // li.style.float = "left";
-        // li.style.color = "#000";
-        // li.style.zIndex = "99";
-        // li.style.marginLeft = "13px";
-
         return li;
     }
 

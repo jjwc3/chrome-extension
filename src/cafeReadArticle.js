@@ -1,7 +1,11 @@
 import {getConfig, setConfig} from './config.mjs';
 
+/*
+카페 읽은 글 표시
+ */
 (async () => {
     let timeOut;
+
     const mainFunc = async () => {
         try {
             setTimeout(async () => {

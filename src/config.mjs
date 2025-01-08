@@ -50,33 +50,33 @@ const defaultConfig = {
     }
 }
 
-const getAllConfig = async () => {
-    const config = (await chrome.storage.sync.get("config"))?.config;
-
-    return JSON.stringify(config);
-}
-
+/**
+ * "json" 받아서 JSON.parse 해서 chrome.storage.sync에 저장. popup에서 '설정 불러오기'에 사용.
+ * @param {string} json
+ * @returns {Promise<void>}
+ */
 const setAllConfig = async (json) => {
     const config = JSON.parse(json);
 
     await chrome.storage.sync.set({ config });
 }
 
-const getConfig = async (key) => {
-    const subKeys = key.split(".");
-    let pointer = (await chrome.storage.sync.get("config"))?.config;
-    let defaultPointer = defaultConfig;
+/**
+ * chrome.storage.sync에서 모든 데이터 불러와서 stringify 해서 return. popup에서 '설정 내보내기' 시 main.js에서 호출해서 base64 인코딩 후 prompt 띄움.
+ * @returns {Promise<string>}
+ */
+const getAllConfig = async () => {
+    const config = (await chrome.storage.sync.get("config"))?.config;
 
-    subKeys.forEach(subKey => {
-        if (pointer == null || pointer[subKey] === undefined) pointer = defaultPointer[subKey];
-        else pointer = pointer[subKey];
-
-        defaultPointer = defaultPointer[subKey];
-    });
-
-    return pointer;
+    return JSON.stringify(config);
 }
 
+/**
+ * chrome.storage.sync에 key:value 저장(덮어쓰기). 가끔씩 pointer 오류 생기는데 무시해도 문제는 없었음.
+ * @param {string} key
+ * @param {any} value
+ * @returns {Promise<void>}
+ */
 const setConfig = async (key, value) => {
     const config = (await chrome.storage.sync.get("config"))?.config;
     const subKeys = key.split(".");
@@ -97,6 +97,51 @@ const setConfig = async (key, value) => {
     await chrome.storage.sync.set({ config: newConfig });
 }
 
+/**
+ * chrome.storage.sync에서 key에 해당하는 value 찾아서 return.
+ * @param {string} key
+ * @returns {Promise<*>}
+ */
+const getConfig = async (key) => {
+    const subKeys = key.split(".");
+    let pointer = (await chrome.storage.sync.get("config"))?.config;
+    let defaultPointer = defaultConfig;
+
+    subKeys.forEach(subKey => {
+        if (pointer == null || pointer[subKey] === undefined) pointer = defaultPointer[subKey];
+        else pointer = pointer[subKey];
+
+        defaultPointer = defaultPointer[subKey];
+    });
+
+    return pointer;
+}
+
+/**
+ * chrome.storage.sync에 key:value 저장. chrome.storage.sync의 저장 용량 한계때문에 도배 리스트 저장·불러오기 시 사용.
+ * @param {string} key
+ * @param {json} value
+ * @returns {Promise<void>}
+ */
+const setLargeStorage = async (key, value) => {
+    const json = JSON.stringify(value);
+    const chunkSize = chrome.storage.sync.QUOTA_BYTES_PER_ITEM / 4;
+
+    const chunkCount = Math.ceil(json.length / chunkSize);
+
+    await chrome.storage.sync.set({ [key + "0"]: chunkCount });
+
+    for (let i = 1; i <= chunkCount; i++){
+        const chunk = json.substr((i - 1) * chunkSize, chunkSize);
+        await chrome.storage.sync.set({ [key + String(i)]: chunk });
+    }
+}
+
+/**
+ * chrome.storage.sync에서 key에 해당하는 value 찾아서 return. chrome.storage.sync의 저장 용량 한계때문에 도배 리스트 저장·불러오기 시 사용.
+ * @param {string} key
+ * @returns {Promise<any|null>}
+ */
 const getLargeStorage = async (key) => {
     try{
         const chunkCount = parseInt((await chrome.storage.sync.get(key + "0"))[key + "0"]);
@@ -110,20 +155,6 @@ const getLargeStorage = async (key) => {
         return JSON.parse(json);
     } catch (e) {
         return null;
-    }
-}
-
-const setLargeStorage = async (key, value) => {
-    const json = JSON.stringify(value);
-    const chunkSize = chrome.storage.sync.QUOTA_BYTES_PER_ITEM / 4;
-
-    const chunkCount = Math.ceil(json.length / chunkSize);
-    
-    await chrome.storage.sync.set({ [key + "0"]: chunkCount });
-    
-    for (let i = 1; i <= chunkCount; i++){
-        const chunk = json.substr((i - 1) * chunkSize, chunkSize);
-        await chrome.storage.sync.set({ [key + String(i)]: chunk });
     }
 }
 
