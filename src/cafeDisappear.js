@@ -1,6 +1,11 @@
-import { getConfig, setConfig } from './config.mjs';
+// import { getConfig, setConfig } from './config.mjs';
 
+/*
+카페 몰컴모드
+현재 사용되지 않음.
+ */
 
+/*
 let toggle = false;
 let domCheck = false;
 (async () => {
@@ -187,7 +192,4 @@ function convSecond(iframe) {
         iframe.getElementById("main-area").style.width = "1080px";
     }
 }
-
-
-
-
+*/

@@ -1,11 +1,11 @@
 import { copyToClipboard } from './utils.mjs';
 import { getConfig, getLargeStorage } from './config.mjs';
 
+/*
+라이브 도배
+ */
 (async () => {
-
     const enabled = await getConfig("twitch.mujisung.enabled");
-
-
     if (!enabled) return;
 
     // 도배 버튼 클릭 시 창 띄우기
@@ -35,7 +35,7 @@ import { getConfig, getLargeStorage } from './config.mjs';
         input.style.marginBottom = "5px";
         input.style.outline = "0";
 
-        input.onkeyup = search;
+        input.onkeyup = search; // 키보드 누를 때마다 search 함수 실행
 
         div.append(input);
 
@@ -48,6 +48,11 @@ import { getConfig, getLargeStorage } from './config.mjs';
         setInterval(updateList, 1000);
     }, 600);
 
+    /**
+     * 키보드 누를 때마다 updateList 실행, 엔터 시 맨 위 리스트 클릭
+     * @param e
+     * @returns {Promise<void>}
+     */
     const search = async (e) => {
         await updateList();
 
@@ -61,9 +66,8 @@ import { getConfig, getLargeStorage } from './config.mjs';
     const updateList = async () => {
         if (!document.getElementById("INGDLC-MUJISUNG-INPUT")) return;
 
+        // 리스트 불러오기
         let mujisungList = await getLargeStorage("mujisungList");
-        // console.log(mujisungList);
-
         if (!mujisungList) mujisungList = ["INGDLC 팝업창을 실행하면 도배 리스트를 서버에서 불러옵니다."];
     
         const mujisungCustomList = (await getConfig("twitch.mujisung.custom")).split("\n");
@@ -75,7 +79,7 @@ import { getConfig, getLargeStorage } from './config.mjs';
             }
         });
 
-        const keyword = document.getElementById('INGDLC-MUJISUNG-INPUT').value;
+        const keyword = document.getElementById('INGDLC-MUJISUNG-INPUT').value; // 검색 값
         const div = document.getElementById("INGDLC-MUJISUNG-LIST");
 
         div.innerHTML = '';
@@ -118,6 +122,7 @@ import { getConfig, getLargeStorage } from './config.mjs';
 
         // 채팅에서 도배 가져오기
         if (!keyword) {
+            // 특수문자 정규식
             const regex = /([\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/;
             const chatLog = [];
             const shortLog = [];
@@ -185,6 +190,7 @@ import { getConfig, getLargeStorage } from './config.mjs';
         })
     }
 
+    // 도배창 열고 닫기
     const mujisung = async () => {
         const el = document.getElementById("INGDLC-MUJISUNG");
         // const chat_area = document.getElementById("chat_area");

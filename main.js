@@ -4,45 +4,17 @@ import { getConfig, setConfig, getAllConfig, setAllConfig, setLargeStorage } fro
 /********************
 Fetch data from server
 ********************/
-document.getElementById("version-current").innerHTML = chrome.runtime.getManifest().version
+document.getElementById("version-current").innerHTML = chrome.runtime.getManifest().version;
 
 fetch("https://jjwc3.github.io/ingdlc-new-mlist/list.json", {
     mode: 'no-cors'
 }).then(response => response.json()).then(async function (json){
     let version;
-    // console.log(text);
 
     try{
-        // text = text.split("\n");
-        // let capture = false;
-
-        // for (let i = 0; i < text.length; i++){
-        //     let txt = text[i].trim();
-    
-        //     if (txt == "@@@LIST_START") capture = true;
-        //     else if (txt == "@@@LIST_END") break;
-        //     else if (capture){
-        //         mujisungList.push(txt);
-        //     }
-        // }
-        // console.log(mujisungList);
-        // let mujisungList = JSON.parse(json);
         mujisungList = json;
-        // console.log(mujisungList);
-
         await setLargeStorage("mujisungList", mujisungList);
-
-        // for (let i = 0; i < text.length; i++){
-        //     let txt = text[i].trim();
-    
-        //     if (txt == "@@@VERSION_START") capture = true;
-        //     else if (txt == "@@@VERSION_END") break;
-        //     else if (capture){
-        //         version = txt;
-        //     }
-        // }
         version = mujisungList.version;
-
 
         document.getElementById("version-new").innerHTML = version;
         if (version !== document.getElementById("version-current").innerHTML) document.getElementById("notice").style.display = "block";
