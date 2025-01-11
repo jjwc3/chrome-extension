@@ -69,6 +69,7 @@ setInterval(() => {
         const downloadli = document.createElement("li");
         downloadli.id = "INGDLC-DL-LI";
         downloadli.style.display = "flex";
+        downloadli.style.gap = "6px";
 
         capturebtn.appendChild(captureimg);
         captureli.appendChild(capturebtn);

@@ -18,16 +18,19 @@ const defaultConfig = {
         checkLawAlert: {
             enabled: 1,
         },
-        path: "",
+        path: {
+            path: "",
+            os: 0,
+        },
         autoUp: {
             custom: "nanajam\n"
         },
+        reload: {
+            enabled: 1
+        }
     },
     cafe: {
         molcom: {
-            enabled: 1,
-        },
-        cheering: {
             enabled: 1,
         },
         twitchalert: {

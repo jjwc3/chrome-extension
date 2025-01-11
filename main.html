@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>INGDLC</title>
+    <title>INGDLC for SOOP</title>
     <script src="./tailwindcss.js"></script>
     <style>
         body::-webkit-scrollbar {
@@ -50,17 +50,39 @@
     <div id="wrap" class="flex justify-between">
         <div id="left" class="basis-1/2">
             <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
-                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">잉친쓰 방장알림</h2>
+                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">잉친쓰 설정</h2>
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="cafe.molcom.enabled"># 몰컴모드 / 간편모드</label>
+                        <div class="text-slate-400 ml-2 text-xs"></div>
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="cafe.molcom.enabled">
+                        <option value="0">OFF</option>
+                        <option value="2">ON : 몰컴모드(이미지, 배너 숨기기)</option>
+                        <option value="1">ON : 간편모드</option>
+                        <option value="3">ON : 간편모드 + 몰컴모드</option>
+                    </select>
+                </div>
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="cafe.read.enabled"># 읽은 글 표시</label>
+                        <div class="text-slate-400 ml-2 text-xs"></div>
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="cafe.read.enabled">
+                        <option value="0">OFF</option>
+                        <option value="1">ON</option>
+                    </select>
+                </div>
                 <div class="mb-4 last:mb-0">
                     <h3 class="flex items-center mb-1">
                         <label class="text-sm font-semibold" for="cafe.alert.enabled"># 알림 활성화</label>
                         <div class="text-slate-400 ml-2 text-xs">잉친쓰 활동 중에만 동작</div>
                     </h3>
                     <select class="config border rounded-sm p-2 w-full text-sm" id="cafe.alert.enabled">
-                        <option value="3">모두 켜기</option>
-                        <option value="2">브라우저 알림만(비권장)</option>
-                        <option value="1">운영체제 알림만(방해금지모드 꺼야 함)</option>
                         <option value="0">모두 끄기</option>
+                        <option value="1">운영체제 알림만(방해금지모드 꺼야 함)</option>
+                        <option value="2">브라우저 알림만(비권장)</option>
+                        <option value="3">모두 켜기</option>
                     </select>
                 </div>
 
@@ -70,11 +92,11 @@
                         <div class="text-slate-400 ml-2 text-xs"></div>
                     </h3>
                     <select class="config border rounded-sm p-2 w-full text-sm" id="cafe.alert.volume">
-                        <option value="100">100%</option>
-                        <option value="75">75%</option>
-                        <option value="50">50%</option>
-                        <option value="25">25%</option>
                         <option value="0">0%</option>
+                        <option value="25">25%</option>
+                        <option value="50">50%</option>
+                        <option value="75">75%</option>
+                        <option value="100">100%</option>
                     </select>
                 </div>
 
@@ -118,9 +140,9 @@
                         <div class="text-slate-400 ml-2 text-xs">SOOP 채팅에 캡쳐 버튼 추가</div>
                     </h3>
                     <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.controller.enabled">
-                        <option value="2">ON (단축키 Alt+C)</option>
-                        <option value="1">단축키(Alt+C)만 사용</option>
                         <option value="0">OFF</option>
+                        <option value="1">단축키(Alt+C)만 사용</option>
+                        <option value="2">ON (단축키 Alt+C)</option>
                     </select>
                 </div>
                 <div class="mb-4 last:mb-0">
@@ -129,9 +151,19 @@
                         <div class="text-slate-400 ml-2 text-xs">SOOP 채팅에 도배 버튼 추가</div>
                     </h3>
                     <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.mujisung.enabled">
-                        <option value="2">ON (단축키 Alt+M)</option>
-                        <option value="1">단축키(Alt+M)만 사용</option>
                         <option value="0">OFF</option>
+                        <option value="1">단축키(Alt+M)만 사용</option>
+                        <option value="2">ON (단축키 Alt+M)</option>
+                    </select>
+                </div>
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.reload.enabled"># 방송 시작 시 새로고침</label>
+<!--                        <div class="text-slate-400 ml-2 text-xs">play.sooplive.co.kr</div>-->
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.reload.enabled">
+                        <option value="0">OFF</option>
+                        <option value="1">ON</option>
                     </select>
                 </div>
                 <div class="mb-4 last:mb-0">
@@ -139,7 +171,7 @@
                         <label class="text-sm font-semibold" for="twitch.autoUp.custom"># LIVE 자동 UP 대상</label>
                         <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 스트리머 ID 입력</div>
                     </h3>
-                    <textarea class="config border rounded-sm p-2 w-full h-44 text-xs" id="twitch.autoUp.custom"></textarea>
+                    <textarea class="config border rounded-sm p-2 w-full h-22 text-xs" id="twitch.autoUp.custom"></textarea>
                     
                 </div>
             </div>
@@ -164,12 +196,12 @@
                         <label class="text-sm font-semibold" for="twitch.mujisung.custom"># 커스텀 도배 리스트</label>
                         <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 입력</div>
                     </h3>
-                    <textarea class="config border rounded-sm p-2 w-full h-44 text-xs" id="twitch.mujisung.custom"></textarea>
+                    <textarea class="config border rounded-sm p-2 w-full h-32 text-xs" id="twitch.mujisung.custom"></textarea>
                     <h3 class="flex items-center mb-1">
                         <label class="text-sm font-semibold" for="twitch.mujisung.custom"># 도배 제외 리스트</label>
                         <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 입력</div>
                     </h3>
-                    <textarea class="config border rounded-sm p-2 w-full h-44 text-xs" id="twitch.mujisung.exception"></textarea>
+                    <textarea class="config border rounded-sm p-2 w-full h-32 text-xs" id="twitch.mujisung.exception"></textarea>
                     <div class="text-center text-sky-600 underline">
                         <a href="https://cafe.naver.com/ingsfriends/10102" target="_blank">여러분들의 도배 리스트를 공유해주세요</a>
                     </div>
@@ -191,17 +223,27 @@
                 </div> -->
             </div>
             <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
-                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">경로 설정</h2>
+                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">클립 다운로드 경로 설정</h2>
 
                 <div class="mb-4 last:mb-0">
                     <h3 class="flex items-center mb-1">
-                        <label class="text-sm font-semibold" for="twitch.controller.enabled"># 클립 다운로드</label>
-                        <div class="text-slate-400 ml-2 text-xs">FFmpeg 명령어 경로 설정</div>
-                        <div id='pathSaveComplete' class="text-slate-400 ml-2 text-xs text-blue-400 font-bold hidden">저장 완료</div>
+                        <label class="text-sm font-semibold" for="twitch.path.os"># 운영체제 선택</label>
+                        <!--                            <div class="text-slate-400 ml-2 text-xs">SOOP 채팅에 캡쳐 버튼 추가</div>-->
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.path.os">
+                        <option value="0">Windows</option>
+                        <option value="1">Others(MacOS, Linux)</option>
+                    </select>
+                </div>
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.path.path"># FFmpeg 명령어 경로 설정</label>
+<!--                        <div class="text-slate-400 ml-2 text-xs">FFmpeg 명령어 경로 설정</div>-->
+<!--                        <div id='pathSaveComplete' class="text-slate-400 ml-2 text-xs text-blue-400 font-bold hidden">저장 완료</div>-->
                     </h3>
                     <div class="flex items-center">
-                        <input class="border rounded-sm p-2 w-11/12 text-sm" type="text" id="pathInput" placeholder="경로 입력">
-                        <button class="rounded-sm border hover:bg-slate-50 py-2 px-0 w-1/12" id="pathSave">저장</button>
+                        <input class="config border rounded-sm p-2 w-full text-sm" type="text" id="twitch.path.path" placeholder="경로 입력">
+<!--                        <button class="rounded-sm border hover:bg-slate-50 py-2 px-0 w-1/12" id="pathSave">저장</button>-->
                     </div>
                 </div>
             </div>
