@@ -23,7 +23,7 @@ fetch("https://jjwc3.github.io/ingdlc-new-mlist/list.json", {
         log(e);
         return;
     }
-    
+
     updateMujisungList();
 });
 
@@ -179,19 +179,19 @@ function updateMujisungList(){
 /********************
 Save Path
 ********************/
-document.getElementById("pathSave").addEventListener("click", async () => {
-    document.getElementById("pathSaveComplete").style.display = 'block';
-    let firstPath = document.getElementById("pathInput").value;
-    if (firstPath.includes('\\') && firstPath[firstPath.length-1] !== '\\') {
-        firstPath = firstPath+'\\';
-    }
-    if (firstPath.includes('/') && firstPath[firstPath.length-1] !== '/') {
-        firstPath += '/';
-    }
-
-    await setConfig("twitch.path",firstPath);
-    console.log(await getConfig("twitch.path"));
-    setTimeout(() => {
-        document.getElementById("pathSaveComplete").style.display = 'none';
-    }, 2000)
-})
+// document.getElementById("pathSave").addEventListener("click", async () => {
+//     document.getElementById("pathSaveComplete").style.display = 'block';
+//     let firstPath = document.getElementById("pathInput").value;
+//     if (firstPath.includes('\\') && firstPath[firstPath.length-1] !== '\\') {
+//         firstPath = firstPath+'\\';
+//     }
+//     if (firstPath.includes('/') && firstPath[firstPath.length-1] !== '/') {
+//         firstPath += '/';
+//     }
+//
+//     await setConfig("twitch.path",firstPath);
+//     console.log(await getConfig("twitch.path"));
+//     setTimeout(() => {
+//         document.getElementById("pathSaveComplete").style.display = 'none';
+//     }, 2000)
+// })

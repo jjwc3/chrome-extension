@@ -1,6 +1,9 @@
+import {getConfig} from './config.mjs';
+
 let checkIntervalFlag = false;
 
-setTimeout(() => {
+setTimeout(async () => {
+    if (!(await getConfig("twitch.reload.enabled"))) return;
     const userId = document.getElementById("streamerNick").dataset.bj_id;
     fetch(`https://chapi.sooplive.co.kr/api/${userId}/station`)
         .then(response => response.json())

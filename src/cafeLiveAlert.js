@@ -42,10 +42,10 @@ import { getConfig } from './config.mjs';
     function NANAJAM_CHECK(){
         fetch(NANAJAM_LINK).then(response => response.json()).then(res => {
             if (res.broad == null) {
-                console.log('OFFAIR');
+                // console.log('OFFAIR');
                 setTimeout(NANAJAM_CHECK, 10000);
             } else {
-                console.log('ONAIR');
+                // console.log('ONAIR');
                 onair.style.display = "block";
 
                 for (let i = 0; i < 5; i++) {
