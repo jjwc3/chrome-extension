@@ -1,94 +1,63 @@
-import { getConfig, setConfig } from './config.mjs';
+import {getConfig} from './config.mjs';
 
-
-let toggle = false;
-let domCheck = false;
+/*
+카페 몰컴모드
+ */
 (async () => {
-
     const enabled = await getConfig("cafe.molcom.enabled");
-    await setConfig("cafe.molcom.enabled", 2);
-    console.log(enabled);
-    if (!enabled) return;
-    let firstLoad = true;
 
-    const observer = new MutationObserver(() => {
-        let iframe = document.getElementsByTagName('iframe').cafe_main.contentWindow.document;
-        if (firstLoad) {
-            if (enabled === 1) molcFirst(iframe);
-            if (enabled === 2) {
-                createButton(iframe);
-                convFirst(iframe);
+    // const enabled = 2;
+
+    setInterval(function () {
+        try{
+            if (!document.getElementById("cafe_main")) return;
+            let iframeDocument = document.getElementById("cafe_main").contentDocument;
+            if (!iframeDocument.getElementById('nanajam_style')){
+                if (enabled === 0) noneMode();
+                else if (enabled === 1) convenientMode();
+                else if (enabled === 2) molcomMode();
+                else {
+                    convenientMode();
+                    molcomMode();
+                }
+
+                // console.log("몰컴모드 적용 완료")
             }
-            firstLoad = false;
-        } else {
-            if (enabled === 1) molcSecond(iframe);
-            if (enabled === 2) {
-                setTimeout(convSecond(iframe), 100);
-            };
+        }catch(e){
+            console.log(e)
         }
-    });
-    observer.observe(document.getElementsByTagName("iframe").cafe_main, {
-        childList: true,
-        subtree: true,
-        attributeOldValue: true,
-    });
-    setTimeout(() => {
-        let btn = document.getElementById("INGDLC-MENU");
-        let iframe = document.getElementsByTagName('iframe').cafe_main.contentWindow.document;
-        btn.onclick = () => {
-            if (toggle) {
-                document.getElementById("cafe_main").width = "1080";
-                document.getElementById("group-area").style.display = "none";
-                document.getElementById("main-area").style.width = "1080px";
-                iframe.getElementById("cafe-body").style.width = "1080px";
-                iframe.getElementById("main-area").style.width = "1080px";
-            } else {
-                document.getElementById("cafe_main").width = "860";
-                document.getElementById("group-area").style.display = "block";
-                document.getElementById("main-area").style.width = "860px";
-                iframe.getElementById("cafe-body").style.width = "860px";
-                iframe.getElementById("main-area").style.width = "860px";
-            }
-            toggle = !toggle;
-        }
-    }, 1000);
+    }, 100);
 
 })();
 
-// enabled === 1
-
-const molcFirst = (iframe) => {
-    document.title = "Cafe"
-
-    let cafeIntroCss = '#cafe-intro{display:none !important;}';
-    let cafeIntroStyle = iframe.createElement('style');
-    cafeIntroStyle.setAttribute('id', 'nanajam_style_iframe');
-
-    if (cafeIntroStyle.styleSheet) cafeIntroStyle.styleSheet.cssText = cafeIntroCss;
-    else cafeIntroStyle.appendChild(iframe.createTextNode(cafeIntroCss));
-
-    iframe.head.appendChild(cafeIntroStyle);
-
-    let css = '#front-img{ display:none !important; } img:not(.thumb_img, .btn_write), .figure-video{ opacity:0.05; } img:hover, .figure-video:hover{ opacity:1; } .profile_thumb:after{ content:none !important; }';
-    let style = document.createElement('style');
-
-    style.setAttribute('id', 'nanajam_style');
-    
-    if (style.styleSheet) style.styleSheet.cssText = css;
-    else style.appendChild(document.createTextNode(css));
-    
-    document.head.appendChild(style);
+const noneMode = async () => {
+    let iframeDocument = document.getElementById("cafe_main").contentDocument;
+    let iframeCss = '.power_ad, .AdvertArea { display:none; } ';
+    let iframeStyle = iframeDocument.createElement('style');
+    iframeStyle.setAttribute('id', 'nanajam_style');
+    if (iframeStyle.styleSheet) iframeStyle.styleSheet.cssText = iframeCss;
+    else iframeStyle.appendChild(iframeDocument.createTextNode(iframeCss));
+    iframeDocument.getElementsByTagName('head')[0].appendChild(iframeStyle);
 }
 
-function molcSecond() {
+const convenientMode = async () => {
+    let iframeDocument = document.getElementById("cafe_main").contentDocument;
+    let documentCss = '';
+    let iframeCss = '.power_ad, .AdvertArea { display:none; }';
+    let documentStyle = document.createElement('style');
+    let iframeStyle = iframeDocument.createElement('style');
 
-}
+    documentStyle.setAttribute('id', 'nanajam_style_document');
+    iframeStyle.setAttribute('id', 'nanajam_style');
 
+    if (document.styleSheet) documentStyle.styleSheet.cssText = documentCss;
+    else documentStyle.appendChild(document.createTextNode(documentCss));
+    if (iframeStyle.styleSheet) iframeStyle.styleSheet.cssText = iframeCss;
+    else iframeStyle.appendChild(iframeDocument.createTextNode(iframeCss));
 
+    document.getElementsByTagName('head')[0].appendChild(documentStyle);
+    iframeDocument.getElementsByTagName('head')[0].appendChild(iframeStyle);
 
-// enabled === 2
-
-function createButton(iframe) {
     const btns = document.createElement("div");
     btns.style.position = "fixed";
     btns.style.top = "10px";
@@ -96,7 +65,7 @@ function createButton(iframe) {
     btns.style.zIndex = "999";
     btns.style.display = "flex";
 
-    const createBtn = (text, id) => {
+    const createBtn = (text) => {
         const btn = document.createElement('button');
         btn.innerHTML = text;
         btn.style.background = "#FFF";
@@ -105,89 +74,73 @@ function createButton(iframe) {
         btn.style.padding = "5px 10px";
         btn.style.cursor = "pointer";
         btn.style.marginRight = "10px";
-        btn.id = id;
+        btn.style.border = "2px solid black";
 
         return btn;
     }
 
-    const btn = createBtn("☰", "INGDLC-MENU");
-    const btn최신 = createBtn("최신", "INGDLC-LATEST");
-    btn최신.onclick = () => {
-        document.getElementById("menuLink0").click();
+    // const btn = createBtn("☰");
+    //
+    // let toggle = true;
+    //
+    // btn.onclick = () => {
+    //     if (toggle) {
+    //         document.getElementById("group-area").style.display = "block";
+    //         // iframeDocument.getElementById("content").style.marginLeft = "230px";
+    //     } else {
+    //         document.getElementById("group-area").style.display = "none";
+    //         // iframeDocument.getElementById("content").style.marginLeft = "0";
+    //     }
+    //
+    //     toggle = !toggle;
+    // }
+
+    const btnLatest = createBtn("최신");
+    btnLatest.onclick = () => {
+        location.href = "https://cafe.naver.com/ArticleList.nhn?search.clubid=29844827&search.boardtype=L";
     }
 
-    let menuLinks = document.getElementsByClassName("gm-tcol-c");
-    let smallTalk, humor;
-    for (let i of menuLinks) {
-        if (i.innerHTML.includes("잡담")) {
-            smallTalk = i;
-        } else if (i.innerHTML.includes("유우머")) {
-            humor = i;
-        }
-    }
-    const btn잡담 = createBtn("잡담", "INGDLC-SMALLTALK");
-    btn잡담.onclick = () => {
-        smallTalk.click();
+    const btnChat = createBtn("잡담");
+    btnChat.onclick = () => {
+        location.href = "https://cafe.naver.com/ArticleList.nhn?search.clubid=29844827&search.menuid=38&search.boardtype=L";
     }
 
-    const btn유우머 = createBtn("유우머", "INGDLC-HUMOR");
-    btn유우머.onclick = () => {
-        humor.click();
+    const btnHumor = createBtn("유우머");
+    btnHumor.onclick = () => {
+        location.href = "https://cafe.naver.com/ArticleList.nhn?search.clubid=29844827&search.menuid=39&search.boardtype=L";
     }
 
-    const btn글쓰기 = createBtn("글쓰기", "INGDLC-WRITE");
-    btn글쓰기.onclick = () => {
-        document.getElementsByClassName("cafe-write-btn")[0].childNodes[1].click();
+    const btnWrite = createBtn("글쓰기");
+    btnWrite.onclick = () => {
+        window.open("https://cafe.naver.com/ca-fe/cafes/29844827/articles/write?boardType=L");
     }
 
-    btns.append(btn);
-    btns.append(btn최신);
-    btns.append(btn잡담);
-    btns.append(btn유우머);
-    btns.append(btn글쓰기);
+    // btns.append(btn);
+    btns.append(btnLatest);
+    btns.append(btnChat);
+    btns.append(btnHumor);
+    btns.append(btnWrite);
 
     document.body.append(btns);
 }
 
+const molcomMode = async () => {
+    setTimeout(()=>{document.title = "Cafe";},200);
+    let iframeDocument = document.getElementById("cafe_main").contentDocument;
 
-const convFirst = (iframe) => {
-    document.getElementById("cafe_main").width = "1080";
-    document.getElementById("group-area").style.display = "none";
-    document.getElementById("main-area").style.width = "1080px";
-    iframe.getElementById("cafe-body").style.width = "1080px";
-    iframe.getElementById("main-area").style.width = "1080px";
-
-    let documentCss = '#special-menu{ display:none; } .bbs_read_tit .tit_info{ font-size:40px; } .bbs_contents *{ font-size:28px !important; } .comment_section .comment_info .desc_info{ font-size:20px !important; } .txt_item{ font-size:18px !important; } .tbl_board_g td{ padding: 15px 0 !important; } .flexibled2_1 #wrap, .flexibled3_1 #wrap, .flexibled3_3 #wrap{ min-width:0; } body{ overflow-x:hidden; } .recent_list .tbl_board_g .td_board, .fav_list .tbl_board_g .td_board{ width:auto; } [class*=flexibled] .tbl_board_g .td_writer{ width:auto; } .tbl_board_g .td_date{ width:50px; } @media (max-width: 1200px) { .tbl_board_g .td_recommend{ display:none; } .tbl_board_g .td_look{ display:none; } .tbl_board_g .td_board{ display:none; } }';
+    let documentCss = ' img, #ia-info-data>ul>li.gm-tcol-c a img {opacity:0.05;} ';
+    let iframeCss = '.power_ad, .AdvertArea { display:none; } #cafe-intro { display:none !important; } img { opacity:0.05; } img:hover { opacity:1; } ';
     let documentStyle = document.createElement('style');
-    documentStyle.setAttribute('id', 'nanajam_style');
+    let iframeStyle = iframeDocument.createElement('style');
+
+    documentStyle.setAttribute('id', 'nanajam_style_document');
+    iframeStyle.setAttribute('id', 'nanajam_style');
+
     if (documentStyle.styleSheet) documentStyle.styleSheet.cssText = documentCss;
     else documentStyle.appendChild(document.createTextNode(documentCss));
-    document.getElementsByTagName('head')[0].appendChild(documentStyle);
-    
-    let iframeCss = '#cafe-intro{ display:none; !important }';
-    let iframeStyle = iframe.createElement('style');
-    iframeStyle.setAttribute('id', 'nanajam_iframe_style');
     if (iframeStyle.styleSheet) iframeStyle.styleSheet.cssText = iframeCss;
-    else iframeStyle.appendChild(iframe.createTextNode(iframeCss));
-    iframe.getElementsByTagName('head')[0].appendChild(iframeStyle);
+    else iframeStyle.appendChild(iframeDocument.createTextNode(iframeCss));
+
+    document.getElementsByTagName('head')[0].appendChild(documentStyle);
+    iframeDocument.getElementsByTagName('head')[0].appendChild(iframeStyle);
 }
-
-function convSecond(iframe) {
-    if (toggle) {
-        document.getElementById("cafe_main").width = "860";
-        document.getElementById("group-area").style.display = "block";
-        document.getElementById("main-area").style.width = "860px";
-        iframe.getElementById("cafe-body").style.width = "860px";
-        iframe.getElementById("main-area").style.width = "860px";
-    } else {
-        document.getElementById("cafe_main").width = "1080";
-        document.getElementById("group-area").style.display = "none";
-        document.getElementById("main-area").style.width = "1080px";
-        iframe.getElementById("cafe-body").style.width = "1080px";
-        iframe.getElementById("main-area").style.width = "1080px";
-    }
-}
-
-
-
-

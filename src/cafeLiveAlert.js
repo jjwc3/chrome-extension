@@ -1,9 +1,10 @@
 import { getConfig } from './config.mjs';
 
+/*
+카페 접속 중 방송 중일 경우 우측 상단에 버튼 생성
+ */
 (async () => {
-
     const enabled = await getConfig("cafe.twitchalert.enabled");
-
     if (!enabled) return;
     
     const NANAJAM_LINK = "https://chapi.sooplive.co.kr/api/nanajam/station";
@@ -26,7 +27,7 @@ import { getConfig } from './config.mjs';
 
         onair.innerHTML = "● ON AIR";
         onair.onclick = () => {
-            window.open("https://play.afreecatv.com/nanajam");
+            window.open("https://play.sooplive.co.kr/nanajam");
         }
 
         document.body.appendChild(onair);
@@ -34,14 +35,17 @@ import { getConfig } from './config.mjs';
         NANAJAM_CHECK();
 
     }, 1000);
-    
+
+    /*
+    방송 중인지 확인, 방송 중일 경우 버튼 보이기, 1분 간격으로 버튼 깜박이기
+     */
     function NANAJAM_CHECK(){
         fetch(NANAJAM_LINK).then(response => response.json()).then(res => {
             if (res.broad == null) {
-                console.log('OFFAIR');
+                // console.log('OFFAIR');
                 setTimeout(NANAJAM_CHECK, 10000);
             } else {
-                console.log('ONAIR');
+                // console.log('ONAIR');
                 onair.style.display = "block";
 
                 for (let i = 0; i < 5; i++) {
