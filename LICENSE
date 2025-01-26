@@ -1,3 +1,71 @@
+누구나 이 프로그램을 복사하거나 수정하여 배포할 수 있으나, 해당 프로그램으로 수익을 창출해서는 안됩니다.
+
+                            INGMONO PUBLIC LICENSE
+
+ :@@@@@:  %%    :##########:   ##          **********  %%   ##         %%
+:@:   :@: %%    :#:       #+   ##                .**   %%   ##         %%
+ :@@@@@:  %%    :#:       #+   ##-------       .**     %%   ##         %%
+          %%    :##########:   ##########    .** ***   %%%% ##:.       %%%%
+    :@@@@@@:         ++             ++      .**   ***  %%   #########  %%
+   :@:    :@:   ============= =============            %%              %%   @@  @@
+    :@@@@@@:                                                           %%
+                               :=*##*######**#*+=:
+                            =*#+-.             .-=##=.
+                       .:.=%=.                      -*#=
+                   .-*#*+-                            .+%+.
+                 :##=.                                   =%+
+               :#*:                                        +%:
+              =%-                                           -@-
+             +%.                                             =@-==-.
+            =@:           :+.            .-                   %#::=##-
+            %+          .*#%*            %%%=.                +#    .*%-
+           :@.        .=%= .@-          :@: =##=:             -@      :#*
+           =@:   ==-+#*- :: =@.         :@:-%=--+#*-          :@.       +%:
+         :%*%=   %%-.  :#%-  =%+.        *% :+*-:..+%+:       .@:        -@:
+        -@- +%   #*     =####+:-*#######*+=#%+=++#%= -+##...  =%          *%
+        ##   #*  #*    ##. :*%%+          %#   *#  ##   .+++##%%+.      :--@:
+        %*    *#%+    *@%*%   -@+        .@+++=@   #@-       -%+-##=:  .%##*
+       .@-     @+     *%   @% -+@:       .@   *@ -::@=        -@: .-+*##=
+       -@.    -@.      #@*  %=  @:        :##+ %% +%+         .@-
+       ##     -@        :+###%##=   -=##=    :-===:          :#%
+       *%#%+   *%=                 -=    =-              .-+##-
+          .##++%*+%*=:                             --===+++*#==:
+             ..    .=+#%##****####**@%=+======%%-:::-+#@*=.
+                          =#@@=     =%#%*+%###*.       %*=@:
+                          @*:%*         ::            -@%##.
+                          .=***#%.                    %#.
+                                *.                    .:
+
+                        Version 0.1.0, January 2025
+
+Copyright (c) 2025 cafe.naver.com/ingsfriends
+
+Everyone is permitted to copy, modify, distribute, and contribute to this project,
+as long as it involves stanning Friendship+ing. If you're not an Ingmono, you are
+not allowed to use this work. 우정잉을 덕질하는 활동과 관련이 있는 경우, 누구나 이 프로젝트를 복사,
+수정, 배포 및 기여할 수 있습니다. 하지만, 잉모노가 아니라면 이 작업물을 사용하지 말아주십시오.
+
+                            INGMONO PUBLIC LICENSE
+       TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION, AND MODIFICATION
+                     이 작업물에 대한 복사, 배포 및 수정에 대한 약관
+
+ 1. You can do whatever you want with this code, as long as you are one of Ingmonos,
+    the most royal fans of Friendship+ing. 이 작업물은 우정잉의 가장 충성스러운 팬 집단인 잉모노들의
+    일원이라면 마음껏 사용할 수 있습니다.
+ 2. If you use or modify this code, you must proclaim at least once that Friendship
+    +ing is awesome. 이 작업물을 사용하거나 수정할 경우, 반드시 최소 한 번은 우정잉이 최고라는 선언을 해야
+    합니다.
+ 3. Non-Ingmonos are not legally or morally allowed to use this code, but after joining
+    Ingchins at cafe.naver.com/ingsfriends and becoming one of us, you are allowed.
+    잉모노가 아닌 사람은 법적 그리고 윤리적인 측면에서 이 작업물을 사용할 수 없습니다. 하지만, 네이버 카페
+    cafe.naver.com/ingsfriends 잉친쓰에 가입하고 우리와 함께한다면 비로소 사용이 가능합니다.
+ 4. Contributions to this project that helps other Ingmonos stand Friendship+ing in a
+    creative way is always welcomed. 다른 잉모노들이 우정잉을 덕질할 수 있게 도와주는 창의적인 기여는
+    언제나 환영합니다.
+ 5. Don't get serious and fight other Ingmono contributors while coding!
+    코딩하면서 진지 빨고 다른 잉모노 기여자들과 싸우지 마세요!
+
+
 MIT License
 
 Copyright (c) 2025 jjwc3
@@ -19,4 +87,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
