@@ -72,15 +72,20 @@ import { getConfig, setConfig } from './config.mjs';
         if (document.getElementsByClassName("btn-login")[0]) clearInterval(afreecaUp);
         if(!document.getElementsByTagName("body")[0].className.includes("mode")) return;
         let bj = location.href.split("/")[3];
-        if (!upBj.includes(bj)) clearInterval(afreecaUp);
-        let dom = document.getElementById("like");
-        if (dom.className.includes('on')) {
+        console.log(`bj: ${bj}, upBj: ${upBj}`)
+        if (!upBj.includes(bj)) {
             clearInterval(afreecaUp);
         } else {
-            setTimeout(()=>{
-                dom.click();
-            },2000);
+            let dom = document.getElementById("like");
+            if (dom.className.includes('on')) {
+                clearInterval(afreecaUp);
+            } else {
+                setTimeout(()=>{
+                    dom.click();
+                },2000);
+            }
         }
+
     }, 5000);
 
     // 자정 넘어가면 자동 UP
@@ -94,18 +99,19 @@ import { getConfig, setConfig } from './config.mjs';
         let afreecaUp = setInterval(() => {
             if (document.getElementsByClassName("btn-login")[0]) clearInterval(afreecaUp);
             let bj = location.href.split("/")[3];
-            if (!upBj.includes(bj)) {
-                clearInterval(afreecaUp);
-                return;
-            }
-            let dom = document.getElementById("like");
-            if (dom.className.includes('on')) {
-                clearInterval(afreecaUp);
+            if(!upBj.includes(bj)) {
+                clearInterval(afreecaUp)
             } else {
-                setTimeout(()=>{
-                    dom.click();
-                },2000);
+                let dom = document.getElementById("like");
+                if (dom.className.includes('on')) {
+                    clearInterval(afreecaUp);
+                } else {
+                    setTimeout(()=>{
+                        dom.click();
+                    },2000);
+                }
             }
+
         }, 1000);
     }, (86400-time)*1000+2000);
     

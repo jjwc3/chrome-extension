@@ -5,12 +5,11 @@ chrome.webRequest.onBeforeRequest.addListener(async function(details) {
       if (details.url.endsWith('playlist.m3u8')) {
         if (details.url.includes('hls')) {
           await chrome.tabs.sendMessage(details.tabId, {url: details.url});
-          // console.log(details.url);
         }
       }
-    },
+},
     {urls: ['<all_urls>']}
-  );
+);
 
 // const docLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=29844827&search.memberKey=QXl99m0EULgw5jhw03oeLA&search.perPage=15&search.page=1&requestFrom=A";
 const docLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=31150943&search.memberKey=ze8OwS74I5rll5OlBTaoLQ&search.perPage=15&search.page=1&requestFrom=A";

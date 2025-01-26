@@ -134,15 +134,9 @@ import { getConfig, setConfig } from './config.mjs';
         //     .catch((error) => {
         //         console.error('Error:', error);
         //     });
-        let os = await getConfig("twitch.path.os");
-        let path = (await getConfig("twitch.path.path")).trim();
+        let path = await getConfig("twitch.path");
         console.log(path);
-        if (!os) { // Windows
-            if (!path.endsWith("\\")) path += "\\";
-        } else { // Linux or UNIX
-            if (!path.endsWith("/")) path += "/";
-        }
-        let ffmpegCommand = `ffmpeg -i "${m3u8Url}" -c copy "${path}${datetime()}.mp4"`
+        let ffmpegCommand = `ffmpeg -i "${m3u8Url}" -c copy "${path}${datetime()}.mp4"`;
         if (!checkLaw()) return;
         copyToClipboardOne(ffmpegCommand);
         document.getElementById("INGDLC-DL-IMG").style.filter = "";
