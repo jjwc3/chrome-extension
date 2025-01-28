@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <title>INGDLC for SOOP</title>
     <script src="./tailwindcss.js"></script>
-    <style>
-        body::-webkit-scrollbar {
-            width: 10px;
-        }
-        body::-webkit-scrollbar-thumb {
-            background-color: #555;
-            border-radius: 10px;
-            background-clip: padding-box;
-            border:1px solid transparent;
-        }
-        body::-webkit-scrollbar-track {
-            background-color: #999;
-            border-radius: 10px;
-        }
-    </style>
+<!--    <style>-->
+<!--        body::-webkit-scrollbar {-->
+<!--            width: 10px;-->
+<!--        }-->
+<!--        body::-webkit-scrollbar-thumb {-->
+<!--            background-color: #555;-->
+<!--            border-radius: 10px;-->
+<!--            background-clip: padding-box;-->
+<!--            border:1px solid transparent;-->
+<!--        }-->
+<!--        body::-webkit-scrollbar-track {-->
+<!--            background-color: #999;-->
+<!--            border-radius: 10px;-->
+<!--        }-->
+<!--    </style>-->
 </head>
 <body style="min-width:790px;" class="text-slate-900 bg-slate-50 px-2 py-4">
     <header>
@@ -72,6 +72,13 @@
                         <option value="0">OFF</option>
                         <option value="1">ON</option>
                     </select>
+                </div>
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="cafe.exceptList.list"># 전체글 제외 게시판</label>
+                        <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 제외 게시판 이름 입력</div>
+                    </h3>
+                    <textarea class="config border rounded-sm p-2 w-full h-22 text-xs" id="cafe.exceptList.list"></textarea>
                 </div>
                 <div class="mb-4 last:mb-0">
                     <h3 class="flex items-center mb-1">
@@ -130,6 +137,40 @@
                     </h3>
                     <input class="config border rounded-sm p-2 w-full text-sm" type="text" id="cafe.alert.body">
                 </div>
+
+
+            </div>
+
+
+        </div>
+
+        <div id="right" class="basis-1/2">
+
+            <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
+                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">SOOP 도배도우미</h2>
+
+                <div class="mb-6">
+                    <input class="border rounded-sm p-2 w-full text-sm mb-1" type="text" id="mujisung-search" placeholder="검색">
+                    <select class="border rounded-sm p-2 w-full text-sm" id="mujisung">
+                        <option value="">도배 리스트</option>
+                    </select>
+                </div>
+
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.mujisung.custom"># 커스텀 도배 리스트</label>
+                        <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 입력</div>
+                    </h3>
+                    <textarea class="config border rounded-sm p-2 w-full h-32 text-xs" id="twitch.mujisung.custom"></textarea>
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.mujisung.exception"># 도배 제외 리스트</label>
+                        <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 입력</div>
+                    </h3>
+                    <textarea class="config border rounded-sm p-2 w-full h-32 text-xs" id="twitch.mujisung.exception"></textarea>
+                    <div class="text-center text-sky-600 underline">
+                        <a href="https://cafe.naver.com/ingsfriends/10102" target="_blank">여러분들의 도배 리스트를 공유해주세요</a>
+                    </div>
+                </div>
             </div>
             <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
                 <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">SOOP 설정</h2>
@@ -159,7 +200,7 @@
                 <div class="mb-4 last:mb-0">
                     <h3 class="flex items-center mb-1">
                         <label class="text-sm font-semibold" for="twitch.reload.enabled"># 방송 시작 시 새로고침</label>
-<!--                        <div class="text-slate-400 ml-2 text-xs">play.sooplive.co.kr</div>-->
+                        <!--                        <div class="text-slate-400 ml-2 text-xs">play.sooplive.co.kr</div>-->
                     </h3>
                     <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.reload.enabled">
                         <option value="0">OFF</option>
@@ -172,55 +213,8 @@
                         <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 스트리머 ID 입력</div>
                     </h3>
                     <textarea class="config border rounded-sm p-2 w-full h-22 text-xs" id="twitch.autoUp.custom"></textarea>
-                    
+
                 </div>
-            </div>
-
-        </div>
-
-        <div id="right" class="basis-1/2">
-
-            <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
-                <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">SOOP 도배도우미</h2>
-
-                <div class="mb-6">
-                    <input class="border rounded-sm p-2 w-full text-sm mb-1" type="text" id="mujisung-search" placeholder="검색">
-    
-                    <select class="border rounded-sm p-2 w-full text-sm" id="mujisung">
-                        <option value="">도배 리스트</option>
-                    </select>
-                </div>
-
-                <div class="mb-4 last:mb-0">
-                    <h3 class="flex items-center mb-1">
-                        <label class="text-sm font-semibold" for="twitch.mujisung.custom"># 커스텀 도배 리스트</label>
-                        <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 입력</div>
-                    </h3>
-                    <textarea class="config border rounded-sm p-2 w-full h-32 text-xs" id="twitch.mujisung.custom"></textarea>
-                    <h3 class="flex items-center mb-1">
-                        <label class="text-sm font-semibold" for="twitch.mujisung.custom"># 도배 제외 리스트</label>
-                        <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 입력</div>
-                    </h3>
-                    <textarea class="config border rounded-sm p-2 w-full h-32 text-xs" id="twitch.mujisung.exception"></textarea>
-                    <div class="text-center text-sky-600 underline">
-                        <a href="https://cafe.naver.com/ingsfriends/10102" target="_blank">여러분들의 도배 리스트를 공유해주세요</a>
-                    </div>
-                </div>
-
-
-                
-
-                <!-- <div class="mb-4 last:mb-0">
-                    <h3 class="flex items-center mb-1">
-                        <label class="text-sm font-semibold" for="twitch.mujisung.enabled"># 도배버튼</label>
-                        <div class="text-slate-400 ml-2 text-xs">아프리카TV 채팅에 도배 버튼 추가</div>
-                    </h3>
-                    <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.mujisung.enabled">
-                        <option value="2">ON (단축키 Alt+M)</option>
-                        <option value="1">단축키(Alt+M)만 사용</option>
-                        <option value="0">OFF</option>
-                    </select>
-                </div> -->
             </div>
             <div class="border border-slate-100 shadow-xl hover:shadow-2xl ease-in-out duration-500 rounded-md bg-white px-3 py-4 m-4 bg-opacity-70 hover:bg-opacity-100 transition-all">
                 <h2 class="font-semibold text-xl text-center pb-1 mb-3 border-b border-slate-300 border-dashed">클립 다운로드 경로 설정</h2>
