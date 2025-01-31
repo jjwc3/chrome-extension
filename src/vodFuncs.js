@@ -79,7 +79,6 @@ import { getConfig, setConfig } from './config.mjs';
     const buttonClick = setInterval(() => {
         try {
             if (document.getElementsByClassName("video_edit")[0] && !document.getElementsByClassName("video_edit")[0]?.className.includes("off")) return;
-            console.log(11);
             const btn = document.getElementById("INGDLC-BTN-DL");
             // if (document.getElementsByClassName("video_edit")[0]) clearInterval(buttonClick);
             clearInterval(buttonClick);
@@ -134,7 +133,17 @@ import { getConfig, setConfig } from './config.mjs';
         //     .catch((error) => {
         //         console.error('Error:', error);
         //     });
-        let path = await getConfig("twitch.path");
+        let path = (await getConfig("twitch.path.path")).trim();
+        let os = await getConfig("twitch.path.os");
+        if (os === 0) {
+            if (path !== "" && !path.endsWith('\\')) {
+                path += "\\";
+            }
+        } else {
+            if (path !== "" && !path.endsWith("/")) {
+                path += "/";
+            }
+        }
         console.log(path);
         let ffmpegCommand = `ffmpeg -i "${m3u8Url}" -c copy "${path}${datetime()}.mp4"`;
         if (!checkLaw()) return;

@@ -6,9 +6,12 @@ txt.style.fontSize = "13px";
 txt.style.alignContent = "center";
 txt.style.display = "none";
 
-setInterval(() => {
+const interval = setInterval(() => {
     if (location.href.includes("catch")) {
-        if (document.getElementById("INGDLC-BTN-CAPTURE")) return;
+        if (document.getElementById("INGDLC-BTN-CAPTURE")) {
+            clearInterval(interval);
+            return;
+        }
 
         const capturebtn = document.createElement("button");
         capturebtn.id = "INGDLC-BTN-CAPTURE";
@@ -38,7 +41,10 @@ setInterval(() => {
         document.getElementsByClassName("share")[0].before(downloadbtn);
         document.getElementsByClassName("share")[0].before(capturebtn);
     } else {
-        if (document.getElementById("INGDLC-BTN-CAPTURE")) return;
+        if (document.getElementById("INGDLC-BTN-CAPTURE")) {
+            clearInterval(interval);
+            return;
+        }
 
         const capturebtn = document.createElement("button");
         capturebtn.id = "INGDLC-BTN-CAPTURE";

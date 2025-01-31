@@ -1,5 +1,8 @@
-setInterval(() => {
-    if (document.getElementById("INGDLC-MUJISUNG-LI")) return;
+const interval = setInterval(() => {
+    if (document.getElementById("INGDLC-MUJISUNG-LI")) {
+        clearInterval(interval);
+        return;
+    }
 
     // 잘라내기, 복사, 붙여넣기 금지 해제
     document.addEventListener("cut", event => event.stopPropagation(), true);

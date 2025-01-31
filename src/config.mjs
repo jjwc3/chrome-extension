@@ -49,6 +49,9 @@ const defaultConfig = {
         read: {
             enabled: 1,
             read: {}
+        },
+        exceptList: {
+            list: ""
         }
     }
 }
