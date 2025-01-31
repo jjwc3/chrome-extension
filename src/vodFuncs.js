@@ -134,7 +134,7 @@ import { getConfig, setConfig } from './config.mjs';
         //     .catch((error) => {
         //         console.error('Error:', error);
         //     });
-        let path = await getConfig("twitch.path");
+        let path = await getConfig("twitch.path.path");
         console.log(path);
         let ffmpegCommand = `ffmpeg -i "${m3u8Url}" -c copy "${path}${datetime()}.mp4"`;
         if (!checkLaw()) return;
