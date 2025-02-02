@@ -27,6 +27,9 @@ const defaultConfig = {
         },
         reload: {
             enabled: 1
+        },
+        audioComp: {
+            enabled: 2
         }
     },
     cafe: {
