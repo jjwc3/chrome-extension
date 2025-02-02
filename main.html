@@ -225,7 +225,8 @@
                     </h3>
                     <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.audioComp.enabled">
                         <option value="0">OFF</option>
-                        <option value="1">ON</option>
+                        <option value="1">단축키(Alt+A)만 사용</option>
+                        <option value="2">ON (단축키 Alt+A)</option>
                     </select>
                 </div>
                 <div class="mb-4 last:mb-0">
@@ -244,6 +245,14 @@
                         <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 스트리머 ID 입력</div>
                     </h3>
                     <textarea class="config border rounded-sm p-2 w-full h-22 text-xs" id="twitch.autoUp.custom"></textarea>
+
+                </div>
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.blockUser.list"># LIVE 채팅 가리기</label>
+                        <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 차단할 유저 닉네임 입력</div>
+                    </h3>
+                    <textarea class="config border rounded-sm p-2 w-full h-28 text-xs" id="twitch.blockUser.list"></textarea>
 
                 </div>
             </div>

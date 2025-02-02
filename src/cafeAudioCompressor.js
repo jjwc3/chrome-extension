@@ -1,7 +1,7 @@
 import { getConfig } from './config.mjs';
 
 /*
-카페 읽은 글 표시
+카페 음량 자동 조절
  */
 (async () => {
     const enabled = await getConfig("cafe.audioComp.enabled");
@@ -13,8 +13,10 @@ import { getConfig } from './config.mjs';
                 const iframeDocument = document.getElementById("cafe_main").contentDocument;
                 const video = iframeDocument.querySelector("video");
                 if (video === null) return;
-                const finish = audioCompression(video);
-                if (finish === true) clearInterval(interval);
+                video.addEventListener("play", () => {
+                    const finish = audioCompression(video);
+                    if (finish === true) clearInterval(interval);
+                })
 
             } catch (e) {
                 console.log(e);

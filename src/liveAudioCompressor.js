@@ -13,37 +13,48 @@ import { getConfig } from "./config.mjs";
     let acActive = false;
     let video;
 
-    const interval = setInterval(() => {
+    setInterval(() => {
         video = document.getElementById("livePlayer");
-        if (acActive) {
-            clearInterval(interval);
-            return;
-        }
-        toggleAudioCompression();
+        const btn = document.getElementById("INGDLC-BTN-COMP");
+
+        if (btn.onclick) return;
+
+        if (enabled === 2) btn.style.display = "block";
+
+        btn.onclick = toggleAudioCompression;
+
     }, 600)
 
     function toggleAudioCompression() {
-        try {
-            if (!audioCtx) {
-                audioCtx = new AudioContext();
-                source = audioCtx.createMediaElementSource(video);
-                compressor = audioCtx.createDynamicsCompressor();
+        if (!audioCtx) {
+            audioCtx = new AudioContext();
+            source = audioCtx.createMediaElementSource(video);
+            compressor = audioCtx.createDynamicsCompressor();
 
-                // Compressor 설정
-                compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
-                compressor.knee.setValueAtTime(40, audioCtx.currentTime);
-                compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
-                compressor.attack.setValueAtTime(0, audioCtx.currentTime);
-                compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
+            // Compressor 설정
+            compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
+            compressor.knee.setValueAtTime(40, audioCtx.currentTime);
+            compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
+            compressor.attack.setValueAtTime(0, audioCtx.currentTime);
+            compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
 
-                source.connect(audioCtx.destination);
-                source.disconnect(audioCtx.destination);
-                source.connect(compressor);
-                compressor.connect(audioCtx.destination);
-                acActive = true;
-            }
-        } catch (e) {
-            console.error(e)
+            source.connect(audioCtx.destination);
+        }
+
+        if (!acActive) {
+            document.getElementById("INGDLC-BTN-COMP-IMG").style.filter = "opacity(0.5) drop-shadow(0 0 0 #7398ff) saturate(500%)";
+            source.disconnect(audioCtx.destination);
+            source.connect(compressor);
+            compressor.connect(audioCtx.destination);
+            acActive = true;
+            console.log("Compressor ON");
+        } else {
+            document.getElementById("INGDLC-BTN-COMP-IMG").style.filter = "";
+            source.disconnect(compressor);
+            compressor.disconnect(audioCtx.destination);
+            source.connect(audioCtx.destination);
+            acActive = false;
+            console.log("Compressor OFF");
         }
     }
 })();
