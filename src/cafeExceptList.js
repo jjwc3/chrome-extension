@@ -9,18 +9,21 @@ import { getConfig } from './config.mjs';
 
     const mainFunc = async () => {
         try {
-            if (!window.location.href.includes("ArticleList.nhn?search.clubid=29844827&search.boardtype=L")) return;
-            const articleList = document.getElementById("cafe_main").contentDocument.querySelectorAll(".td_article");
-            articleList.forEach((t) => {
-                try {
-                    const listName = t?.querySelector(".board-name")?.querySelector(".inner_name")?.firstElementChild?.innerHTML;
-                    if (exceptList.includes(listName)) {
-                        t.parentElement.style.display = "none";
+            setTimeout(async () => {
+                if (!window.location.href.includes("ArticleList.nhn?search.clubid=29844827&search.boardtype=L")) return;
+                const articleList = document.getElementById("cafe_main").contentDocument.querySelectorAll(".td_article");
+                articleList.forEach((t) => {
+                    try {
+                        const listName = t?.querySelector(".board-name")?.querySelector(".inner_name")?.firstElementChild?.innerHTML;
+                        if (exceptList.includes(listName)) {
+                            t.parentElement.style.display = "none";
+                        }
+                    } catch (e) {
+                        console.log(e);
                     }
-                } catch (e) {
-                    console.log(e);
-                }
-            })
+                })
+            }, 100)
+
         } catch (e) {
             console.log(e);
         }

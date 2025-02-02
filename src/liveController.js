@@ -22,7 +22,7 @@ import { getConfig, setConfig } from './config.mjs';
 
         btn.onclick = capture;
 
-        video = document.getElementsByTagName("video")[0];
+        video = document.getElementById("livePlayer");
     }, 600);
 
     /**
@@ -123,5 +123,8 @@ import { getConfig, setConfig } from './config.mjs';
         chatAd1.remove();
         chatAd2.remove();
     }, 500);
-    
+
+
+
+
 })();
