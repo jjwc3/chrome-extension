@@ -1,2 +1,4 @@
-dist/
+dist
 src/cafeDisappear.js
+.idea
+tailwind.config.js

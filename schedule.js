@@ -76,11 +76,15 @@
             elementTomorrow.style.color = "#f14343";
         } else {
             elementToday.innerHTML = schedule[0];
+            if (schedule[0].includes("휴방")) elementToday.style.color = "#f14343";
+            else elementToday.style.color = "#000000";
             elementTomorrow.innerHTML = schedule[1];
+            if (schedule[1].includes("휴방")) elementTomorrow.style.color = "#f14343";
+            else elementTomorrow.style.color = "#000000";
         }
     }
 
-    reload.addEventListener("click", await update());
+    reload.addEventListener("click", await update);
 
     await update();
 })()
