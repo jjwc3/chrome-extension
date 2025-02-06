@@ -46,12 +46,16 @@
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://www.youtube.com/channel/UCW945UjEs6Jm3rVNvPEALdg" target="_blank">❤️유튜브</a>
         <a class="opacity-70 hover:opacity-100 hover:font-bold" href="https://www.instagram.com/friendshiping94/" target="_blank">💗인스타그램</a>
     </footer>
-    <footer class="flex justify-around my-4 font-bold">
-        <p>오늘 일정: </p>
-        <p id="schedule-today"></p>
-        <p>내일 일정: </p>
-        <p id="schedule-tomorrow"></p>
-        <button id="schedule-reload">새로고침</button>
+    <footer class="flex justify-around my-4 font-bold text-lg">
+        <div class="flex">
+            <p>오늘 일정: &nbsp;</p>
+            <p id="schedule-today"></p>
+        </div>
+        <div class="flex">
+            <p>내일 일정: &nbsp;</p>
+            <p id="schedule-tomorrow"></p>
+        </div>
+        <button id="schedule-reload" class="font-medium text-sm">새로고침</button>
     </footer>
 
     <div id="wrap" class="flex justify-between">
@@ -86,6 +90,16 @@
                         <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 제외 게시판 이름 입력</div>
                     </h3>
                     <textarea class="config border rounded-sm p-2 w-full h-22 text-xs" id="cafe.exceptList.list"></textarea>
+                </div>
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="cafe.audioComp.enabled"># 자동 음량 조절</label>
+                        <div class="text-slate-400 ml-2 text-xs">동영상 음량 자동 조절</div>
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="cafe.audioComp.enabled">
+                        <option value="0">OFF</option>
+                        <option value="1">ON</option>
+                    </select>
                 </div>
                 <div class="mb-4 last:mb-0">
                     <h3 class="flex items-center mb-1">
@@ -206,13 +220,12 @@
                 </div>
                 <div class="mb-4 last:mb-0">
                     <h3 class="flex items-center mb-1">
-                        <label class="text-sm font-semibold" for="twitch.audioComp.enabled"># 자동음량조절버튼</label>
-                        <div class="text-slate-400 ml-2 text-xs">SOOP 채팅에 자동 음량 조절 버튼 추가</div>
+                        <label class="text-sm font-semibold" for="twitch.audioComp.enabled"># 자동 음량 조절</label>
+                        <div class="text-slate-400 ml-2 text-xs">라이브·VOD 음량 자동 조절</div>
                     </h3>
                     <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.audioComp.enabled">
                         <option value="0">OFF</option>
-                        <option value="1">단축키(Alt+A)만 사용</option>
-                        <option value="2">ON (단축키 Alt+A)</option>
+                        <option value="1">ON</option>
                     </select>
                 </div>
                 <div class="mb-4 last:mb-0">
@@ -250,12 +263,9 @@
                 <div class="mb-4 last:mb-0">
                     <h3 class="flex items-center mb-1">
                         <label class="text-sm font-semibold" for="twitch.path.path"># FFmpeg 명령어 경로 설정</label>
-<!--                        <div class="text-slate-400 ml-2 text-xs">FFmpeg 명령어 경로 설정</div>-->
-<!--                        <div id='pathSaveComplete' class="text-slate-400 ml-2 text-xs text-blue-400 font-bold hidden">저장 완료</div>-->
                     </h3>
                     <div class="flex items-center">
                         <input class="config border rounded-sm p-2 w-full text-sm" type="text" id="twitch.path.path" placeholder="경로 입력">
-<!--                        <button class="rounded-sm border hover:bg-slate-50 py-2 px-0 w-1/12" id="pathSave">저장</button>-->
                     </div>
                 </div>
             </div>

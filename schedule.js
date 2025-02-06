@@ -52,9 +52,6 @@
         dateArr = dateArr.slice(oneIndex[0], oneIndex[1]);
         textArr = textArr.slice(oneIndex[0], oneIndex[1]);
 
-        console.log(dateArr);
-        console.log(textArr);
-
         if (Number(dateArr[date[2]-1]) !== date[2]) return ["err", "err"];
         else return [textArr[date[2]-1], textArr[date[2]]]
     }
