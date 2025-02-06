@@ -51,11 +51,11 @@ const interval = setInterval(() => {
 
     const li1 = createLi("INGDLC-MUJISUNG-LI");
     const li2 = createLi("INGDLC-CAPTURE-LI");
-    const li3 = createLi("INGDLC-COMP-LI");
+    // const li3 = createLi("INGDLC-COMP-LI");
 
     li1.prepend(createBtn("INGDLC-BTN-MUJISUNG", "mujisung"));
     li2.prepend(createBtn("INGDLC-BTN-CAPTURE", "capture"));
-    li3.prepend(createBtn("INGDLC-BTN-COMP", "audio"));
+    // li3.prepend(createBtn("INGDLC-BTN-COMP", "audio"));
 
 
     document.body.onkeydown = (e) => {
@@ -63,10 +63,10 @@ const interval = setInterval(() => {
 
         if (e.keyCode === 77) document.getElementById("INGDLC-BTN-MUJISUNG").click();
         if (e.keyCode === 67) document.getElementById("INGDLC-BTN-CAPTURE").click();
-        if (e.keyCode === 65) document.getElementById("INGDLC-BTN-COMP").click();
+        // if (e.keyCode === 65) document.getElementById("INGDLC-BTN-COMP").click();
     }
 
-    document.getElementsByClassName("game_point")[0]?.after(li3);
+    // document.getElementsByClassName("game_point")[0]?.after(li3);
     document.getElementsByClassName("game_point")[0]?.after(li2);
     document.getElementsByClassName("game_point")[0]?.after(li1);
 

@@ -14,7 +14,7 @@ import { getConfig } from "./config.mjs";
     let video;
 
     const interval = setInterval(() => {
-        video = document.getElementById("livePlayer");
+        video = document.getElementById("video");
         if (acActive) {
             clearInterval(interval);
             return;

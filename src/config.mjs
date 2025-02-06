@@ -29,7 +29,7 @@ const defaultConfig = {
             enabled: 1
         },
         audioComp: {
-            enabled: 2
+            enabled: 1
         }
     },
     cafe: {
@@ -55,6 +55,9 @@ const defaultConfig = {
         },
         exceptList: {
             list: ""
+        },
+        audioComp: {
+            enabled: 1
         }
     }
 }

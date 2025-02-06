@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "INGDLC for SOOP",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "SOOP: 도배, 캡쳐, 클립 저장, 자동UP, 방송 시작 시 새로고침, 채팅창 광고 제거, 자동 도배 가져오기 | 네이버 카페: 방장 알림, 몰컴모드·간편모드, 방송 시작 시 알림, 읽은 글 확인, 새로고침 개선, 게시판 제외",
   "icons": {
     "128": "icons/icon.png"
@@ -59,7 +59,8 @@
       ],
       "js": [
         "src/vodBtns.js",
-        "src/vodFuncs.js"
+        "src/vodFuncs.js",
+        "src/vodAudioCompressor.js"
       ]
     },
     {
@@ -81,7 +82,8 @@
         "src/cafeLiveAlert.js",
         "src/cafeReadArticle.js",
         "src/cafeDisappear.js",
-        "src/cafeExceptList.js"
+        "src/cafeExceptList.js",
+        "src/cafeAudioCompressor.js"
       ]
     }
   ],
