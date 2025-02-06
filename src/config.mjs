@@ -55,6 +55,9 @@ const defaultConfig = {
         },
         exceptList: {
             list: ""
+        },
+        audioComp: {
+            enabled: 1
         }
     }
 }

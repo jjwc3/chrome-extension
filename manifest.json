@@ -81,7 +81,8 @@
         "src/cafeLiveAlert.js",
         "src/cafeReadArticle.js",
         "src/cafeDisappear.js",
-        "src/cafeExceptList.js"
+        "src/cafeExceptList.js",
+        "src/cafeAudioCompressor.js"
       ]
     }
   ],
