@@ -50,7 +50,8 @@
         "src/liveController.js",
         "src/liveBtns.js",
         "src/liveBroadCheck.js",
-        "src/liveAudioCompressor.js"
+        "src/liveAudioCompressor.js",
+        "src/liveBlockUser.js"
       ]
     },
     {
