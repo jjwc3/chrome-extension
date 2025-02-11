@@ -30,6 +30,9 @@ const defaultConfig = {
         },
         audioComp: {
             enabled: 1
+        },
+        blockUser: {
+            list: ""
         }
     },
     cafe: {

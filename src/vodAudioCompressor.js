@@ -6,6 +6,7 @@ import { getConfig } from "./config.mjs";
 (async () => {
     const enabled = await getConfig("twitch.audioComp.enabled");
     if (!enabled) return;
+    console.log("AC");
 
     let audioCtx = null;
     let source = null;
@@ -41,6 +42,7 @@ import { getConfig } from "./config.mjs";
                 source.connect(compressor);
                 compressor.connect(audioCtx.destination);
                 acActive = true;
+                console.log("Audio Compressing");
             }
         } catch (e) {
             console.error(e)
