@@ -11,6 +11,7 @@ chrome.webRequest.onBeforeRequest.addListener(async function(details) {
     {urls: ['<all_urls>']}
 );
 
+// 배포 시에는 반드시 위 링크로
 const docLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=29844827&search.memberKey=QXl99m0EULgw5jhw03oeLA&search.perPage=15&search.page=1&requestFrom=A";
 // const docLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkArticleListV1?search.cafeId=31150943&search.memberKey=ze8OwS74I5rll5OlBTaoLQ&search.perPage=15&search.page=1&requestFrom=A";
 // const commLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkReplyListV1?search.clubid=29844827&search.memberKey=QXl99m0EULgw5jhw03oeLA&search.perPage=15&search.page=1&requestFrom=A";
@@ -18,10 +19,10 @@ const docLink = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMemberNetworkAr
 
 chrome.runtime.onMessage.addListener(async (request) => {
   if (request.extension === "INGDLC_ALERT") {
-    // console.log('after responded');
+    console.log('after responded');
     await fetchArticleId(request);
   } else if (request.extension === "INGDLC_FIRSTALERT") {
-    // console.log('first responded')
+    console.log('first responded')
     await fetchFirstArticleId();
   }
 });
@@ -35,7 +36,7 @@ async function fetchFirstArticleId() {
     });
     const articleJson = await articleResponse.json();
     const articleId = articleJson.message.result.articleList[0].articleid;
-    // console.log("first = " + articleId);
+    console.log("first = " + articleId);
     await setConfig("cafe.alert.articleId", articleId);
   } catch (e) {
     console.error(`Available after Login : ${e}`);
@@ -49,7 +50,7 @@ async function fetchArticleId(r) {
     const articleResponse = await fetch(docLink);
     const articleJson = await articleResponse.json();
     const articleId = articleJson.message.result.articleList[0].articleid;
-    // console.log(articleId);
+    console.log(articleId);
     if (pArticleId >= articleId) return;
 
     const url = `https://cafe.naver.com/ingsfriends/${articleId}`

@@ -19,7 +19,7 @@ import {getConfig} from './config.mjs';
     이를 방지하기 위해 페이지에 처음 접속하고 sendNoti()가 실행되기 전 cafe.alert.articleId를 갱신함.
     extension: "INGDLC_FIRSTALERT"로 serviceWorker.js에 메세지 전송. serviceWorker에서 갱신.
      */
-    async function firstSetArticldId() {
+    async function firstSetArticleId() {
         if (!enabled) return;
 
         try {
@@ -31,7 +31,7 @@ import {getConfig} from './config.mjs';
         }
     }
 
-    await firstSetArticldId();
+    await firstSetArticleId();
 
     /*
     3초마다 반복되는 새 글 확인
@@ -50,7 +50,7 @@ import {getConfig} from './config.mjs';
         }, 3000);
     }
       
-    await sendNoti();
+    setTimeout(await sendNoti, 3000);
 
     /*
     serviceWorker.js에서 메세지를 받고 브라우저 알림(cafe.alert.enabled == 2 or 3) 전송(confirm)
