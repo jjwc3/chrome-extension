@@ -1,5 +1,5 @@
-import { copyToClipboard } from './utils.mjs';
-import { getConfig, getLargeStorage } from './config.mjs';
+import { copyToClipboard } from './utils.mts';
+import { getConfig, getLargeStorage } from './config.mts';
 
 /*
 라이브 도배
@@ -72,8 +72,8 @@ import { getConfig, getLargeStorage } from './config.mjs';
     
         const mujisungCustomList = (await getConfig("twitch.mujisung.custom")).split("\n");
         let exceptionList = [];
-        const exceptionTest = (await getConfig("twitch.mujisung.exception")).split("\n");
-        exceptionTest.forEach((e) => {
+        const exceptionTemp = (await getConfig("twitch.mujisung.exception")).split("\n");
+        exceptionTemp.forEach((e) => {
             if (e.length >= 1) {
                 exceptionList.push(e.trim());
             }
@@ -130,7 +130,8 @@ import { getConfig, getLargeStorage } from './config.mjs';
             
             for (let i = 0; i < allChats.length; i++) {
                 const chat = allChats[i].innerHTML;
-                const short = chat.substr(0, 15);
+                // const short = chat.substr(0, 15); // substr is deprecated
+                const short = chat.slice(0, 15);
                 function chatPush() {
                     chatLog.push(chat);
                     shortLog.push(short);

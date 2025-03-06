@@ -1,4 +1,4 @@
-import { getConfig } from './config.mjs';
+import { getConfig } from './config.mts';
 
 /*
 카페 접속 중 방송 중일 경우 우측 상단에 버튼 생성
