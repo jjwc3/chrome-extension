@@ -1,5 +1,5 @@
-import {playAlert} from './utils.mjs';
-import {getConfig} from './config.mjs';
+import {playAlert} from './utils.mts';
+import {getConfig} from './config.mts';
 
 /*
 카페 알림 기능

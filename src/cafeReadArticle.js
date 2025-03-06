@@ -1,4 +1,4 @@
-import {getConfig, setConfig} from './config.mjs';
+import {getConfig, setConfig} from './config.mts';
 
 /*
 카페 읽은 글 표시

@@ -1,5 +1,5 @@
-import { datetime, copyToClipboardOne } from "./utils.mjs";
-import { getConfig, setConfig } from './config.mjs';
+import { datetime, copyToClipboardOne } from "./utils.mts";
+import { getConfig, setConfig } from './config.mts';
 
 (async () => {
     let checkLawEnabled = await getConfig("twitch.checkLawAlert.enabled");
