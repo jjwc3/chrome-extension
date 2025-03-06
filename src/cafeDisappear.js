@@ -1,4 +1,4 @@
-import {getConfig} from './config.mjs';
+import {getConfig} from './config.mts';
 
 /*
 카페 몰컴모드

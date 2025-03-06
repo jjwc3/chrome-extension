@@ -1,4 +1,4 @@
-import { getConfig } from './config.mjs';
+import { getConfig } from './config.mts';
 
 /*
 카페 전체글 보기에서 특정 게시판 제외

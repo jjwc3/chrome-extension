@@ -1,4 +1,4 @@
-import { getConfig } from './config.mjs';
+import { getConfig } from './config.mts';
 
 /*
 카페 음량 자동 조절

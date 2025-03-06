@@ -1,7 +1,7 @@
 // chzzk-plus by kyechan99
 // Modified: React+TypeScript to VanillaJS, Recomposition of Button
 
-import { getConfig } from "./config.mjs";
+import { getConfig } from "./config.mts";
 
 (async () => {
     const enabled = await getConfig("twitch.audioComp.enabled");

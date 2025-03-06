@@ -1,4 +1,4 @@
-import {getConfig} from './config.mjs';
+import {getConfig} from './config.mts';
 
 let checkIntervalFlag = false;
 
