@@ -61,9 +61,9 @@ const interval = setInterval(() => {
     document.body.onkeydown = (e) => {
         if (!e.altKey) return;
 
-        if (e.keyCode === 77) document.getElementById("INGDLC-BTN-MUJISUNG").click();
-        if (e.keyCode === 67) document.getElementById("INGDLC-BTN-CAPTURE").click();
-        if (e.keyCode === 65) document.getElementById("INGDLC-BTN-COMP").click();
+        if (e.key === 'm') document.getElementById("INGDLC-BTN-MUJISUNG").click();
+        if (e.key === 'c') document.getElementById("INGDLC-BTN-CAPTURE").click();
+        if (e.key === 'a') document.getElementById("INGDLC-BTN-COMP").click();
     }
 
     document.getElementsByClassName("game_point")[0]?.after(li3);

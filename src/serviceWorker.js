@@ -1,4 +1,4 @@
-import { getConfig, setConfig } from './config.mjs';
+import { getConfig, setConfig } from './config.mts';
 
 // Network 요청 중 'playlist.m3u8'로 끝나고, 중간에 'hls' 들어간 요청 찾아서 url 전송
 chrome.webRequest.onBeforeRequest.addListener(async function(details) {

@@ -1,5 +1,5 @@
-import { datetime } from './utils.mjs';
-import { getConfig, setConfig } from './config.mjs';
+import { datetime } from './utils.mts';
+import { getConfig, setConfig } from './config.mts';
 
 /*
 라이브 관련 기능(도배 제외)
