@@ -12,17 +12,33 @@ import {getConfig, setConfig} from './config.mts';
         try {
             setTimeout(async () => {
 
-                if (window.location.href.includes("/members/") || window.location.href.includes("/popular")) return;
+                if (window.location.href.includes("/members/") || window.location.href.includes("/popular")) {
+                    return;
+                }
 
                 const iframe = document.getElementById("cafe_main");
-
-                const iframeDocument = iframe.contentDocument;
+                let iframeDocument;
+                if (iframe) {
+                    iframeDocument = iframe.contentDocument;
+                }
 
                 // const enabled = await getConfig("cafe.read.enabled");
                 // if (!enabled) return;
 
                 const pathname = window.location.pathname;
-                const cafename = iframe.src.split('clubid=')[1].split('&')[0];
+                let cafename;
+                if (iframe) {
+                    if (iframe.src.includes("clubid")) cafename = iframe.src.split('clubid=')[1].split('&')[0];
+                    else if (iframe.src.includes("/articles/")) cafename = iframe.src.split('/articles')[1].split('?')[0];
+                    else {
+                        return;
+                    }
+                } else {
+                    cafename = pathname.split("cafes/")[1].split('/')[0];
+                }
+
+
+
                 if (isNumericString(pathname.split('/')[2])) { // 게시글인 경우
                     const readArticle = await setReadArticle(cafename, Number(pathname.split('/')[2]));
                     const relatedArticleList = iframeDocument.querySelectorAll(".tit");
@@ -32,7 +48,7 @@ import {getConfig, setConfig} from './config.mts';
                             t.style.color = "#959595";
                         }
                     })
-                } else if (pathname.split('/')[1].includes("ArticleList.nhn") || pathname.split('/')[1].includes("ca-fe")){ // 게시판 또는 인기글 또는 프로필인 경우
+                } else if (pathname.split('/')[1].includes("ArticleList.nhn") || pathname.split('/')[1].includes("ca-fe")){ // iframe 게시판 또는 인기글 또는 프로필인 경우
                     const readArticle = await getReadArticle(cafename);
                     const articleList = iframeDocument.querySelectorAll(".article");
                     articleList.forEach((t) => {
@@ -44,7 +60,22 @@ import {getConfig, setConfig} from './config.mts';
                             }
                         }
                     })
-                } else if (pathname.split('/')[1]) { // 카페 메인인 경우
+                } else if (pathname.split('/')[1] === "f-e") { // non-iframe 게시판인 경우
+                    console.log("#board");
+                    const readArticle = await getReadArticle(cafename);
+                    const articleList = document.querySelectorAll(".article");
+                    articleList.forEach((t) => {
+                        if (readArticle.includes(Number(t.href.split('/articles/')[1].split('?menuid=')[0]))) {
+                            if (getComputedStyle(t).color === 'rgb(255, 78, 89)') {
+                                t.style.color = '#ffb7bc';
+                            } else {
+                                t.style.color = '#959595';
+                            }
+                        }
+                    })
+
+                }else if (pathname.split('/')[1]) { // 카페 메인인 경우
+                    console.log("#main");
                     const readArticle = await getReadArticle(cafename);
                     // 우정잉 올림 or 공지사항
                     const articleList = iframeDocument.querySelectorAll(".article");
@@ -94,12 +125,18 @@ import {getConfig, setConfig} from './config.mts';
     const isNumericString = (str) => !isNaN(str) && str.trim() !== "" && Number.isFinite(Number(str));
 
 
-    const observer = new MutationObserver(() => {
-        if (!(document.title === "Cafe")) mainFunc();
+    const observer = new MutationObserver((mutations) => {
+        console.log("#C");
+        console.table(mutations);
+        if (!(document.querySelector("head").querySelector("title").innerHTML === "Cafe")) {
+            mainFunc();
+        }
     });
-    observer.observe(document.querySelector("title"), {
+    observer.observe(document.querySelector("head"), {
         childList: true,
         subtree: true,
+        characterData: true,
+        attributes: true,
     });
 
     await mainFunc();

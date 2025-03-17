@@ -80,6 +80,8 @@
         "src/cafeAlert.js",
         "src/cafeLiveAlert.js",
         "src/cafeDisappear.js",
+        "src/cafeToIframe.js",
+        "src/cafeReadArticle.js",
         "src/cafeExceptList.js",
         "src/cafeAudioCompressor.js"
       ]
