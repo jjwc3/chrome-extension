@@ -1,4 +1,4 @@
-./dist
-.idea
-./tailwind.config.js
-./TODO
+dist
+.idea/
+tailwind.config.js
+!/TODO
