@@ -59,7 +59,8 @@
       ],
       "js": [
         "src/vodBtns.js",
-        "src/vodFuncs.js"
+        "src/vodFuncs.js",
+        "src/vodAudioCompressor.js"
       ]
     },
     {

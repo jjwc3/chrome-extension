@@ -4,7 +4,6 @@
  */
 (async () => {
     const mainFunc = async () => {
-        console.log("main");
         const menuItems = document.querySelectorAll('[role="menuitem"]');
         menuItems.forEach((menuItem) => {
             if (menuItem.hasAttribute("href")) {

@@ -37,7 +37,7 @@ const defaultConfig = {
             enabled: 1
         },
         audioComp: {
-            enabled: 1
+            enabled: 2
         },
         blockUser: {
             list: ""
@@ -45,7 +45,7 @@ const defaultConfig = {
     },
     cafe: {
         molcom: {
-            enabled: 1,
+            enabled: 0,
         },
         twitchalert: {
             enabled: 1,
@@ -53,7 +53,7 @@ const defaultConfig = {
         alert: {
             articleId: 1,
             commId: 1,
-            enabled: 3,
+            enabled: 0,
             volume: 50,
             image: "icon",
             title: "INGDLC",
