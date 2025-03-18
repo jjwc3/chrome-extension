@@ -245,7 +245,16 @@
                         <div class="text-slate-400 ml-2 text-xs">줄바꿈으로 구분해 스트리머 ID 입력</div>
                     </h3>
                     <textarea class="config border rounded-sm p-2 w-full h-22 text-xs" id="twitch.autoUp.custom"></textarea>
-
+                </div>
+                <div class="mb-4 last:mb-0">
+                    <h3 class="flex items-center mb-1">
+                        <label class="text-sm font-semibold" for="twitch.blockGrade.enabled"># LIVE 건빵 채팅 가리기</label>
+                    </h3>
+                    <select class="config border rounded-sm p-2 w-full text-sm" id="twitch.blockGrade.enabled">
+                        <option value="0">OFF</option>
+                        <option value="1">팬·구독자 아닌 유저 가리기</option>
+                        <option value="2">구독자 아닌 유저 가리기</option>
+                    </select>
                 </div>
                 <div class="mb-4 last:mb-0">
                     <h3 class="flex items-center mb-1">

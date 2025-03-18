@@ -61,6 +61,12 @@
     let elementTomorrow = document.getElementById("schedule-tomorrow");
 
     const update = async () => {
+        elementToday.innerHTML = "";
+        elementToday.style.color = "#000000";
+        elementTomorrow.innerHTML = "";
+        elementTomorrow.style.color = "#000000";
+
+
         let schedule = await fetchSchedule([yyyy,mm,dd]);
         schedule.forEach((value, index) => {
             if (value === "") schedule[index] = "정규방송";
