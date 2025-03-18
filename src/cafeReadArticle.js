@@ -4,22 +4,19 @@ import {getConfig, setConfig} from './config.mts';
 카페 읽은 글 표시
  */
 (async () => {
-    const enabled = await getConfig("cafe.read.enabled");
-    if (!enabled) return;
-    // let timeOut;
+    let timeOut;
 
     const mainFunc = async () => {
         try {
             setTimeout(async () => {
 
-                if (window.location.href.includes("/members/") || window.location.href.includes("/popular")) return;
-
+                if (window.location.href.includes("/members/")) return;
                 const iframe = document.getElementById("cafe_main");
 
                 const iframeDocument = iframe.contentDocument;
 
-                // const enabled = await getConfig("cafe.read.enabled");
-                // if (!enabled) return;
+                const enabled = await getConfig("cafe.read.enabled");
+                if (!enabled) return;
 
                 const pathname = window.location.pathname;
                 const cafename = iframe.src.split('clubid=')[1].split('&')[0];
@@ -66,15 +63,15 @@ import {getConfig, setConfig} from './config.mts';
                     })
                 }
             }, 500);
-            // clearInterval(timeOut);
+            clearInterval(timeOut);
         } catch (e) {
             console.log(e);
         }
     }
 
-    // timeOut = setInterval(async () => {
-    //     await mainFunc();
-    // }, 200)
+    timeOut = setInterval(async () => {
+        await mainFunc();
+    }, 200)
 
 
     const getReadArticle = async (cafeName) => {
@@ -95,12 +92,10 @@ import {getConfig, setConfig} from './config.mts';
 
 
     const observer = new MutationObserver(() => {
-        if (!(document.title === "Cafe")) mainFunc();
+        mainFunc()
     });
     observer.observe(document.querySelector("title"), {
         childList: true,
         subtree: true,
     });
-
-    await mainFunc();
 })();

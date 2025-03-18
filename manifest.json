@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "INGDLC for SOOP",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "SOOP: 도배, 캡쳐, 클립 저장, 자동UP, 자동 음량 조절, 특정 채팅 가리기 | 네이버 카페: 방장 알림, 몰컴모드·간편모드, 읽은 글 확인, 새로고침 개선, 게시판 제외, 자동 음량 조절",
   "icons": {
     "128": "icons/icon.png"
@@ -59,7 +59,8 @@
       ],
       "js": [
         "src/vodBtns.js",
-        "src/vodFuncs.js"
+        "src/vodFuncs.js",
+        "src/vodAudioCompressor.js"
       ]
     },
     {
@@ -80,6 +81,8 @@
         "src/cafeAlert.js",
         "src/cafeLiveAlert.js",
         "src/cafeDisappear.js",
+        "src/cafeToIframe.js",
+        "src/cafeReadArticle.js",
         "src/cafeExceptList.js",
         "src/cafeAudioCompressor.js"
       ]

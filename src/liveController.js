@@ -1,4 +1,4 @@
-import { datetime } from './utils.mts';
+import { datetime, copyToClipboardOne } from './utils.mts';
 import { getConfig, setConfig } from './config.mts';
 
 /*
@@ -123,6 +123,38 @@ import { getConfig, setConfig } from './config.mts';
         chatAd1.remove();
         chatAd2.remove();
     }, 500);
+
+    // time copy: afreecaUp처럼 setInterval처럼 만들기
+
+    let hasELAdded = false;
+    let copyDuration = setInterval(() => {
+        if (hasELAdded) {
+            clearInterval(copyDuration);
+            return;
+        }
+
+        const timeElements = document.querySelectorAll("#time");
+        if (timeElements.length !== 0) {
+            timeElements.forEach((timeElement) => {
+                timeElement.addEventListener("click", async () => {
+                    const duration = timeElement.innerHTML;
+                    await copyToClipboardOne(duration);
+                    const toast = document.getElementById("toastMessage");
+                    toast.querySelector(".success").querySelector('p').innerHTML = "복사되었습니다.";
+                    toast.style.display = "flex";
+                    setTimeout(() => {
+                        toast.style.display = "none";
+                    }, 2000);
+                })
+                timeElement.style.cursor = "pointer";
+                hasELAdded = true;
+            })
+        }
+
+
+    }, 2000)
+
+
 
 
 

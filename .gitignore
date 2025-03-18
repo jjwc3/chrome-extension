@@ -1,4 +1,4 @@
 dist
-src/cafeDisappear.js
-.idea
+.idea/
 tailwind.config.js
+!/TODO
