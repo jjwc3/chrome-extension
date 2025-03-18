@@ -41,6 +41,9 @@ const defaultConfig = {
         },
         blockUser: {
             list: ""
+        },
+        blockGrade: {
+            enabled: 0
         }
     },
     cafe: {
