@@ -1,3 +1,5 @@
+import Papa from 'papaparse';
+
 (async () => {
 
     const date = new Date();
@@ -30,9 +32,13 @@
         const url = "https://docs.google.com/spreadsheets/d/1FOZdya-n8Rv2GMBOqecv_rOA8swGGLUJE6hA_LYv6wg/export?format=csv"
 
         let csv = [];
-        (await (await fetch(url)).text()).split("\n").forEach((t) => {
-            csv.push( t.split(",") )
-        })
+        // CSV를 직접 나누려니 오류 발생, papaparse library 사용
+        // (await (await fetch(url)).text()).split("\n").forEach((t) => {
+        //     csv.push( t.split(",") )
+        // })
+
+        const text = await (await fetch(url)).text();
+        csv = Papa.parse(text, { skipEmptyLines: true }).data;
 
         if (date[0] !== Number(csv[0][3]) || date[1] !== Number(csv[0][13])) return ["noMatch", "noMatch"];
 
@@ -44,8 +50,8 @@
 
         rowDateIndex.forEach((dateIndex) => {
             columnDayIndex.forEach((dayIndex) => {
-                dateArr.push(csv[dateIndex][dayIndex].trim())
-                textArr.push(csv[dateIndex+1][dayIndex].trim())
+                dateArr.push(csv[dateIndex][dayIndex].trim());
+                textArr.push(csv[dateIndex+1][dayIndex].trim());
             })
         })
         const oneIndex = findAll(dateArr, "1");
@@ -55,6 +61,7 @@
         if (Number(dateArr[date[2]-1]) !== date[2]) return ["err", "err"];
         else return [textArr[date[2]-1], textArr[date[2]]]
     }
+
 
     const reload = document.getElementById("schedule-reload");
     let elementToday = document.getElementById("schedule-today");
