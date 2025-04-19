@@ -29,7 +29,7 @@ import Papa from 'papaparse';
      * @returns {Promise<string[]>}
      */
     const fetchSchedule = async (date) => {
-        const url = "https://docs.google.com/spreadsheets/d/1FOZdya-n8Rv2GMBOqecv_rOA8swGGLUJE6hA_LYv6wg/export?format=csv"
+        const url = "https://docs.google.com/spreadsheets/d/1n-ERReiHweDiCJcXTMkWRBUellktnBYQDbFmouExnas/export?format=csv"
 
         let csv = [];
         // CSV를 직접 나누려니 오류 발생, papaparse library 사용
