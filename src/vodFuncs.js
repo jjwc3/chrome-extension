@@ -78,8 +78,12 @@ import { getConfig, setConfig } from './config.mts';
     //다운 버튼
     const buttonClick = setInterval(() => {
         try {
-            if (document.getElementsByClassName("video_edit")[0] && !document.getElementsByClassName("video_edit")[0]?.className.includes("off")) return;
             const btn = document.getElementById("INGDLC-BTN-DL");
+            if (document.getElementsByClassName("video_edit")[0] && !document.getElementsByClassName("video_edit")[0]?.className.includes("off")) {
+                btn.style.display = "none";
+                return;
+            }
+
             // if (document.getElementsByClassName("video_edit")[0]) clearInterval(buttonClick);
             clearInterval(buttonClick);
             if (btn?.onclick) return;

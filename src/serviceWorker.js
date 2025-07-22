@@ -2,10 +2,8 @@ import { getConfig, setConfig } from './config.mts';
 
 // Network 요청 중 'playlist.m3u8'로 끝나고, 중간에 'hls' 들어간 요청 찾아서 url 전송
 chrome.webRequest.onBeforeRequest.addListener(async function(details) {
-      if (details.url.endsWith('playlist.m3u8')) {
-        if (details.url.includes('hls')) {
-          await chrome.tabs.sendMessage(details.tabId, {url: details.url});
-        }
+      if (details.url.includes('manifest.m3u8') && !details.url.includes("?")) {
+        await chrome.tabs.sendMessage(details.tabId, {url: details.url});
       }
 },
     {urls: ['<all_urls>']}
