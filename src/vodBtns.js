@@ -115,9 +115,9 @@ const interval = setInterval(() => {
         compressorbtn.appendChild(compressorimg);
         compressorli.appendChild(compressorbtn);
 
-        if (document.getElementsByClassName("video_edit")[0]?.className.includes("off")) {
+        // if (document.getElementsByClassName("video_edit")[0]?.className.includes("off")) {
             document.getElementsByClassName("subscribe")[0].before(downloadli);
-        }
+        // }
         document.getElementsByClassName("subscribe")[0].before(compressorli);
         document.getElementsByClassName("subscribe")[0].before(captureli);
     }

@@ -75,12 +75,13 @@ document.getElementById("config-reset")?.addEventListener("click", async () => {
     if (confirm("모든 설정을 초기화하시겠습니까?")) {
         alert("초기화되었습니다.")
 
-        await chrome.storage.local.set({ config: null });
-        location.reload();
+        await chrome.storage.sync.set({ config: null });
+        // location.reload();
     }
 });
 
 document.getElementById("config-save")?.addEventListener("click", async () => {
+    console.log(await getAllConfig());
     const json = btoa(encodeURIComponent(await getAllConfig()));
 
     prompt("다음 내용을 복사하여 저장하십시오.", json)
@@ -91,6 +92,7 @@ document.getElementById("config-load")?.addEventListener("click", async () => {
 
     if (json !== null) {
         try{
+            console.log(decodeURIComponent(atob(json)));
             await setAllConfig(decodeURIComponent(atob(json)));
 
             alert("설정을 불러왔습니다.")
