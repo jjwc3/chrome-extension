@@ -6,18 +6,29 @@ import { getConfig } from './config.mts';
 (async () => {
     const enabled = await getConfig("cafe.audioComp.enabled");
     if (!enabled) return;
-
+    let finished = [];
     const mainFunc = async () => {
         const interval = setInterval(async () => {
+            console.log("interval");
             try {
                 const iframeDocument = document.getElementById("cafe_main").contentDocument;
-                const video = iframeDocument.querySelector("video");
-                if (video === null) return;
-                video.addEventListener("play", () => {
-                    const finish = audioCompression(video);
-                    if (finish === true) clearInterval(interval);
-                })
+                const videos = iframeDocument.querySelectorAll("video");
+                if (videos.length === 0) return;
 
+                if (finished.length === 0) {
+                    finished = Array(videos.length).fill(false);
+                }
+
+                if (finished.every(e => e === true)) clearInterval(interval);
+                videos.forEach((video, index) => {
+                    if (finished[index] === false) {
+                        video.addEventListener("play", () => {
+                            if (audioCompression(video)) finished[index] = true;
+                        }, {once: true})
+                        video.crossOrigin = "anonymous";
+                    }
+
+                })
             } catch (e) {
                 console.log(e);
             }
