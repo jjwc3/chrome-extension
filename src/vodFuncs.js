@@ -100,10 +100,11 @@ import { getConfig, setConfig } from './config.mts';
     // m3u8 URL Service Worker 로부터 받아오기
     let m3u8Url;
     chrome.runtime.onMessage.addListener(
-        function(request) {
+        async function(request) {
             if (request.url) {
                 m3u8Url = request.url;
                 if (document.getElementsByClassName("video_edit")[0] && !document.getElementsByClassName("video_edit")[0]?.className.includes("off")) return;
+                if (document.querySelector(".btn_normal") && document.querySelector(".btn_normal").innerHTML.includes("스토리")) return;
                 setTimeout(() => {
                     document.getElementById("INGDLC-DL-IMG").style.filter = "opacity(0.5) drop-shadow(0 0 0 #7398ff) saturate(500%)";
                 }, 300);
