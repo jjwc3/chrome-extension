@@ -1,9 +1,10 @@
 import { getConfig, setConfig } from './config.mts';
 
-// Network 요청 중 'playlist.m3u8'로 끝나고, 중간에 'hls' 들어간 요청 찾아서 url 전송
+// Network 요청 중 smil 들어간 URL 찾아서, smil을 mp4로 바꿔(최대 화질만 다운되게) url 전송
 chrome.webRequest.onBeforeRequest.addListener(async function(details) {
-      if (details.url.includes('manifest.m3u8') && !details.url.includes("?")) {
-        await chrome.tabs.sendMessage(details.tabId, {url: details.url});
+      if (details.url.includes('smil')) {
+        let url = details.url.replace("smil", "mp4");
+        await chrome.tabs.sendMessage(details.tabId, {url: url});
       }
 },
     {urls: ['<all_urls>']}
