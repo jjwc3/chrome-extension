@@ -5,7 +5,7 @@ let checkIntervalFlag = false;
 setTimeout(async () => {
     if (!(await getConfig("twitch.reload.enabled"))) return;
     const userId = document.getElementById("streamerNick").dataset.bj_id;
-    fetch(`https://chapi.sooplive.co.kr/api/${userId}/station`)
+    fetch(`https://chapi.sooplive.com/api/${userId}/station`)
         .then(response => response.json())
         .then(json => {
             if (json === null || json.broad === null) {
@@ -32,7 +32,7 @@ function checkLoop(uid) {
     checkIntervalFlag = true;
     console.log('방송이 시작되면 새로고침 합니다.');
     const interval = setInterval(function(){
-        fetch(`https://chapi.sooplive.co.kr/api/${uid}/station`)
+        fetch(`https://chapi.sooplive.com/api/${uid}/station`)
             .then(response => response.json())
             .then(json => {
                 if (json === null || json.broad === null) {
@@ -40,7 +40,7 @@ function checkLoop(uid) {
                 }
                 checkIntervalFlag = false;
                 clearInterval(interval);
-                window.location.href = `https://play.sooplive.co.kr/${uid}`;
+                window.location.href = `https://play.sooplive.com/${uid}`;
             })
     },3000);
 }
